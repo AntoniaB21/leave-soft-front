@@ -34,11 +34,11 @@ ReactDOM.render(
   <Provider store={store}>
     <ConnectedRouter history={history}>
       <Router>
-
-      <Routes>
-        <Route path="/hello" element={<HelloWorld/>} strict={true} exact={true}/>
-        <Route render={() => <h1>Not Found</h1>} />
-      </Routes>
+        <Routes>
+          <Route path="/hello" element={<HelloWorld/>} strict={true} exact={true}/>
+          <Route path="/" element={<App/>} strict={true} exact={true}/>
+          <Route render={() => <h1>Not Found</h1>} />
+        </Routes>
       </Router>
     </ConnectedRouter>
   </Provider>,
