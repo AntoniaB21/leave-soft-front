@@ -4,11 +4,44 @@ import './index.css';
 import App from './App';
 import * as serviceWorkerRegistration from './serviceWorkerRegistration';
 import reportWebVitals from './reportWebVitals';
+import { createStore, combineReducers, applyMiddleware } from 'redux';
+import { Provider } from 'react-redux';
+import thunk from 'redux-thunk';
+import { reducer as form } from 'redux-form';
+import { Route, Routes, BrowserRouter as Router } from 'react-router-dom';
+import { createBrowserHistory } from 'history';
+import {
+  ConnectedRouter,
+  connectRouter,
+  routerMiddleware
+} from 'connected-react-router';
+import 'bootstrap/dist/css/bootstrap.css';
+import 'font-awesome/css/font-awesome.css';
+// Import your reducers and routes here
+import HelloWorld from './components/HelloWorld';
+
+const history = createBrowserHistory();
+const store = createStore(
+  combineReducers({
+    router: connectRouter(history),
+    form,
+    /* Add your reducers here */
+  }),
+  applyMiddleware(routerMiddleware(history), thunk)
+);
 
 ReactDOM.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>,
+  <Provider store={store}>
+    <ConnectedRouter history={history}>
+      <Router>
+
+      <Routes>
+        <Route path="/hello" element={<HelloWorld/>} strict={true} exact={true}/>
+        <Route render={() => <h1>Not Found</h1>} />
+      </Routes>
+      </Router>
+    </ConnectedRouter>
+  </Provider>,
   document.getElementById('root')
 );
 
