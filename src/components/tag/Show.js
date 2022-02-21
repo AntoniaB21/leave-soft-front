@@ -1,11 +1,16 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { Link, Navigate } from "react-router-dom";
+import { Link, useParams, Navigate} from "react-router-dom";
 import PropTypes from "prop-types";
 import { retrieve, reset } from "../../actions/tag/show";
 import { del } from "../../actions/tag/delete";
 
 class Show extends Component {
+  constructor(props){
+    super(props);
+    this.state = { id : this.props.id }
+  }
+  
   static propTypes = {
     retrieved: PropTypes.object,
     loading: PropTypes.bool.isRequired,
@@ -20,7 +25,9 @@ class Show extends Component {
   };
 
   componentDidMount() {
-    this.props.retrieve(decodeURIComponent(this.props.match.params.id));
+    // this.props.retrieve(decodeURIComponent(this.props.match.params.id));
+    console.log('this.props')
+    console.log(this.props.match)
   }
 
   componentWillUnmount() {

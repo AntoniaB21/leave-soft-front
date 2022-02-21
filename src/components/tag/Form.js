@@ -7,7 +7,7 @@ class Form extends Component {
     handleSubmit: PropTypes.func.isRequired,
     error: PropTypes.string,
   };
-
+  
   renderField = (data) => {
     data.input.className = "form-control";
 
