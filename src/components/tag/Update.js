@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { Link, Redirect } from "react-router-dom";
+import { Link, Navigate } from "react-router-dom";
 import PropTypes from "prop-types";
 import Form from "./Form";
 import { retrieve, update, reset } from "../../actions/tag/update";
@@ -38,7 +38,7 @@ class Update extends Component {
   };
 
   render() {
-    if (this.props.deleted) return <Redirect to=".." />;
+    if (this.props.deleted) return <Navigate to=".." />;
 
     const item = this.props.updated ? this.props.updated : this.props.retrieved;
 

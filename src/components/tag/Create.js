@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { Link, Redirect } from "react-router-dom";
+import { Link, Navigate } from "react-router-dom";
 import PropTypes from "prop-types";
 import Form from "./Form";
 import { create, reset } from "../../actions/tag/create";
@@ -21,7 +21,7 @@ class Create extends Component {
   render() {
     if (this.props.created)
       return (
-        <Redirect
+        <Navigate
           to={`edit/${encodeURIComponent(this.props.created["@id"])}`}
         />
       );

@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { Link, Redirect } from "react-router-dom";
+import { Link, Navigate } from "react-router-dom";
 import PropTypes from "prop-types";
 import { retrieve, reset } from "../../actions/tag/show";
 import { del } from "../../actions/tag/delete";
@@ -33,7 +33,7 @@ class Show extends Component {
   };
 
   render() {
-    if (this.props.deleted) return <Redirect to=".." />;
+    if (this.props.deleted) return <Navigate to=".." />;
 
     const item = this.props.retrieved;
 

@@ -17,15 +17,16 @@ import {
 } from 'connected-react-router';
 import 'bootstrap/dist/css/bootstrap.css';
 import 'font-awesome/css/font-awesome.css';
-// Import your reducers and routes here
 import HelloWorld from './components/HelloWorld';
+import tagRoutes from './routes/tag';
+import tag from './reducers/tag';
 
 const history = createBrowserHistory();
 const store = createStore(
   combineReducers({
     router: connectRouter(history),
     form,
-    /* Add your reducers here */
+    tag
   }),
   applyMiddleware(routerMiddleware(history), thunk)
 );
@@ -36,6 +37,7 @@ ReactDOM.render(
       <Router>
         <Routes>
           <Route path="/hello" element={<HelloWorld/>} strict={true} exact={true}/>
+          {tagRoutes}
           <Route path="/" element={<App/>} strict={true} exact={true}/>
           <Route render={() => <h1>Not Found</h1>} />
         </Routes>
