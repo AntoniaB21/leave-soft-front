@@ -8,10 +8,9 @@ import { createStore, combineReducers, applyMiddleware } from 'redux';
 import { Provider } from 'react-redux';
 import thunk from 'redux-thunk';
 import { reducer as form } from 'redux-form';
-import { Routes, Route } from 'react-router-dom';
+import { Routes, Route , BrowserRouter as Router} from 'react-router-dom';
 import { createBrowserHistory } from 'history';
 import {
-  ConnectedRouter,
   connectRouter,
   routerMiddleware
 } from 'connected-react-router';
@@ -20,6 +19,7 @@ import 'font-awesome/css/font-awesome.css';
 // Import your reducers and routes here
 import tagRoutes from './routes/tag';
 import tag from './reducers/tag';
+import HelloWorld  from './components/HelloWorld';
 
 const history = createBrowserHistory();
 const store = createStore(
@@ -33,12 +33,14 @@ const store = createStore(
 
 ReactDOM.render(
   <Provider store={store}>
-    <ConnectedRouter history={history}>
+    <Router history={history}>
       <Routes>
+      <Route path="/hello" element={<HelloWorld/>} strict={true} exact={true}/>
+      <Route path="/" element={<App/>} strict={true} exact={true}/>
         {tagRoutes}
         <Route render={() => <h1>Not Found</h1>} />
       </Routes>
-    </ConnectedRouter>
+    </Router>
   </Provider>,
   document.getElementById('root')
 );
