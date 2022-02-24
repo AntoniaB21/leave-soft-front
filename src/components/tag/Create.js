@@ -19,13 +19,15 @@ class Create extends Component {
   }
 
   render() {
+    console.log("create in component");
+    console.log(this.props.created);
     if (this.props.created)
-      return (
+    return (
         <Navigate
           to={`edit/${encodeURIComponent(this.props.created["@id"])}`}
         />
       );
-
+      
     return (
       <div>
         <h1>New Tag</h1>

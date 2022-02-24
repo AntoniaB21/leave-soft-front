@@ -16,7 +16,7 @@ export function success(created) {
 export function create(values) {
   return (dispatch) => {
     dispatch(loading(true));
-
+    console.log("create in action");
     return fetch("tags", { method: "POST", body: JSON.stringify(values) })
       .then((response) => {
         dispatch(loading(false));

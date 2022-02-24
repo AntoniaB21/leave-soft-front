@@ -19,6 +19,7 @@ export function fetch(id, options = {}) {
     options.headers.set("Content-Type", MIME_TYPE);
 
   return global.fetch(new URL(id, ENTRYPOINT), options).then((response) => {
+    console.log('global fetch');
     if (response.ok) return response;
 
     return response.json().then(

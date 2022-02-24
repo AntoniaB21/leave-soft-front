@@ -16,10 +16,12 @@ class List extends Component {
   };
 
   componentDidMount() {
-    this.props.list(
-      this.props.match.params.page &&
-        decodeURIComponent(this.props.match.params.page)
-    );
+    console.log('tag tech prout')
+    // console.log(this.props.retrieved["hydra:member"])
+    // this.props.list(
+    //   this.props.match.params.page &&
+    //     decodeURIComponent(this.props.match.params.page)
+    // );
   }
 
   componentDidUpdate(prevProps) {

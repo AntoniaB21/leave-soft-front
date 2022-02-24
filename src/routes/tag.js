@@ -6,6 +6,6 @@ export default [
     <Route path="/tags/create" element={<Create/>} exact key="create" />,
     <Route path="/tags/edit/:id" element={<Update/>} exact key="update" />,
     <Route path="/tags/show/:id" element={<Show/>} exact key="show" />,
-    <Route path="/tags/" element={<List/>} exact strict key="list" />,
-    <Route path="/tags/:page" element={<List/>} exact strict key="page" />,
+    <Route path={"/tags/"} element={<List/>} exact strict key="list" />,
+    // <Route path="/tags/:page" element={<List/>} exact strict key="page" />,
 ];

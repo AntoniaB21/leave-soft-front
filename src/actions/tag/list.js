@@ -23,6 +23,7 @@ export function list(page = "tags") {
     dispatch(loading(true));
     dispatch(error(""));
 
+    console.log('dispatch page');
     fetch(page)
       .then((response) =>
         response
