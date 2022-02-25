@@ -11,14 +11,8 @@ function App() {
         <p>
           Welcome in <code>Leave software </code>.
         </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Hello world
-        </a>
+        
+          <Link to="/tags">tags</Link>
       </header>
     </div>
   );

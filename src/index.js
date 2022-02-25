@@ -20,7 +20,7 @@ import 'font-awesome/css/font-awesome.css';
 import tagRoutes from './routes/tag';
 import tag from './reducers/tag';
 import HelloWorld  from './components/HelloWorld';
-
+import { LoginForm } from './components/LoginForm';
 const history = createBrowserHistory();
 const store = createStore(
   combineReducers({
@@ -36,6 +36,7 @@ ReactDOM.render(
     <Router history={history}>
       <Routes>
       <Route path="/hello" element={<HelloWorld/>} strict={true} exact={true}/>
+      <Route path="/login" element={<LoginForm/>} strict={true} exact={true}/>
       <Route path="/" element={<App/>} strict={true} exact={true}/>
         {tagRoutes}
         <Route render={() => <h1>Not Found</h1>} />
