@@ -21,7 +21,7 @@ export function LoginForm() {
             placeholder="myemail@email.com"
             {...form.getInputProps('email')}
         />
-
+        console.log('form login');
         <TextInput
                 required
                 label="Password"

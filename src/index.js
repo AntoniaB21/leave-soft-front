@@ -21,6 +21,8 @@ import tagRoutes from './routes/tag';
 import tag from './reducers/tag';
 import HelloWorld  from './components/HelloWorld';
 import { LoginForm } from './components/LoginForm';
+import { TextAxios } from './components/TestAxios';
+
 const history = createBrowserHistory();
 const store = createStore(
   combineReducers({
@@ -37,6 +39,7 @@ ReactDOM.render(
       <Routes>
       <Route path="/hello" element={<HelloWorld/>} strict={true} exact={true}/>
       <Route path="/login" element={<LoginForm/>} strict={true} exact={true}/>
+      <Route path="/axios" element={<TextAxios/>} strict={true} exact={true}/>
       <Route path="/" element={<App/>} strict={true} exact={true}/>
         {tagRoutes}
         <Route render={() => <h1>Not Found</h1>} />
