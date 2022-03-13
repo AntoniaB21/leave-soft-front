@@ -20,6 +20,7 @@
     "@types/testing-library__jest-dom": "5.14.2",
     "@types/webpack": "5.28.0",
     "@types/webpack-env": "1.16.3",
+    "axios": "^0.26.1",
     "chalk": "4.1.2",
     "cross-env": "7.0.3",
     "eslint-config-prettier": "8.3.0",
@@ -75,12 +76,9 @@
     "lint:fix": "yarn run eslint --fix src",
     "lint:css": "stylelint src/**/*.css",
     "generate": "plop --plopfile internals/generators/plopfile.ts",
-    "cleanAndSetup": "ts-node ./internals/scripts/clean.ts",
     "prettify": "prettier --write",
-    "extract-messages": "i18next-scanner --config=internals/extractMessages/i18next-scanner.config.js"
-  },
-  "eslintConfig": {
-    "extends": "react-app"
+    "extract-messages": "i18next-scanner --config=internals/extractMessages/i18next-scanner.config.js",
+    "prepare": "husky install"
   },
   "browserslist": {
     "production": [

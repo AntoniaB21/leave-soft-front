@@ -10,7 +10,7 @@ import {
   ThemedStyledProps,
   Interpolation,
   FlattenInterpolation,
-} from 'styled-components/macro';
+} from "styled-components/macro";
 
 /*
  * Taken from https://github.com/DefinitelyTyped/DefinitelyTyped/issues/32914
@@ -35,7 +35,7 @@ export const media = (Object.keys(sizes) as Array<keyof typeof sizes>).reduce(
 
     return acc;
   },
-  {} as { [key in keyof typeof sizes]: MediaFunction },
+  {} as { [key in keyof typeof sizes]: MediaFunction }
 );
 
 /*
