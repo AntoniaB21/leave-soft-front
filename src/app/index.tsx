@@ -15,6 +15,7 @@ import { GlobalStyle } from "styles/global-styles";
 import { HomePage } from "./pages/HomePage/Loadable";
 import { NotFoundPage } from "./components/NotFoundPage/Loadable";
 import { useTranslation } from "react-i18next";
+import { TagsPage } from "./pages/TagsPage";
 
 export function App() {
   const { i18n } = useTranslation();
@@ -30,7 +31,7 @@ export function App() {
 
       <Switch>
         <Route exact path="/" component={HomePage} />
-        <Route exact path="/tags" component={HomePage} />
+        <Route exact path="/tags" component={TagsPage} />
         <Route component={NotFoundPage} />
       </Switch>
       <GlobalStyle />
