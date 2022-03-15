@@ -11,6 +11,7 @@ import "react-app-polyfill/stable";
 import * as React from "react";
 import * as ReactDOM from "react-dom";
 import { Provider } from "react-redux";
+import { ChakraProvider } from '@chakra-ui/react'
 
 // Use consistent styling
 import "sanitize.css/sanitize.css";
@@ -34,7 +35,9 @@ ReactDOM.render(
   <Provider store={store}>
     <HelmetProvider>
       <React.StrictMode>
-        <App />
+        <ChakraProvider>
+            <App />
+          </ChakraProvider>
       </React.StrictMode>
     </HelmetProvider>
   </Provider>,
