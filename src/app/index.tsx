@@ -15,21 +15,23 @@ import { GlobalStyle } from "styles/global-styles";
 import { HomePage } from "./pages/HomePage/Loadable";
 import { NotFoundPage } from "./components/NotFoundPage/Loadable";
 import { useTranslation } from "react-i18next";
+import { LoginPage } from "./pages/LoginPage/Loadable";
 
 export function App() {
   const { i18n } = useTranslation();
   return (
     <BrowserRouter>
       <Helmet
-        titleTemplate="%s - React Boilerplate"
-        defaultTitle="React Boilerplate"
+        titleTemplate="%Off PlannerFront-end"
+        defaultTitle="Off Planner"
         htmlAttributes={{ lang: i18n.language }}
       >
-        <meta name="description" content="A React Boilerplate application" />
+        <meta name="description" content="Off Planner Application" />
       </Helmet>
 
       <Switch>
         <Route exact path="/" component={HomePage} />
+        <Route exact path="/login" component={LoginPage} />
         <Route component={NotFoundPage} />
       </Switch>
       <GlobalStyle />
