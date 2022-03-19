@@ -12,6 +12,7 @@ import {
   Text,
   useColorModeValue,
 } from '@chakra-ui/react';
+import { Logo } from 'app/components/Logo/Loadable';
 
 export default function LoginCard() {
   return (
@@ -22,7 +23,7 @@ export default function LoginCard() {
       bg={useColorModeValue('gray.50', 'gray.800')}>
       <Stack spacing={8} mx={'auto'} maxW={'lg'} py={12} px={6}>
         <Stack align={'center'}>
-          
+          <Logo/>
           <Heading fontSize={'4xl'}>Login</Heading>
         </Stack>
         <Box
@@ -32,7 +33,7 @@ export default function LoginCard() {
           p={8}>
           <Stack spacing={4}>
             <FormControl id="email">
-              <FormLabel>Email address</FormLabel>
+              <FormLabel>Email</FormLabel>
               <Input type="email" />
             </FormControl>
             <FormControl id="password">
@@ -44,8 +45,8 @@ export default function LoginCard() {
                 direction={{ base: 'column', sm: 'row' }}
                 align={'start'}
                 justify={'space-between'}>
-                <Checkbox>Remember me</Checkbox>
-                <Link color={'blue.400'}>Forgot password?</Link>
+                <Checkbox>Se souvenir de moi</Checkbox>
+                <Link color={'blue.400'}>Mot de passe oublié ?</Link>
               </Stack>
               <Button
                 bg={'blue.400'}
@@ -53,7 +54,7 @@ export default function LoginCard() {
                 _hover={{
                   bg: 'blue.500',
                 }}>
-                Sign in
+                Sign in 
               </Button>
             </Stack>
           </Stack>
