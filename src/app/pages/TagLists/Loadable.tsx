@@ -6,5 +6,5 @@ import { lazyLoad } from "utils/loadable";
 
 export const TagsListsPage = lazyLoad(
   () => import("./index"),
-  (module) => module.default
+  (module) => module.WebsitesPage
 );
