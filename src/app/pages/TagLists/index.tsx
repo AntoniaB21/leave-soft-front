@@ -64,9 +64,10 @@ export const WebsitesPage = memo((props: Props) => {
     ],
     [],
   );
-
+  
   return (
     <div>
+      <NavBar/>
       <Heading order={2}>Tags</Heading>
       {!loading && (
         <Table variant='simple'>

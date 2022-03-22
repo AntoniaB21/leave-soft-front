@@ -1,6 +1,7 @@
 
 import { GlobalState } from 'app//slice/types';
 import { WebsitesPageState } from 'app/pages/TagLists/slice/types';
+import { LoginPageState } from 'app/pages/LoginPage/slice/types';
 // [IMPORT NEW CONTAINERSTATE ABOVE] < Needed for generating containers seamlessly
 
 /*
@@ -10,5 +11,6 @@ import { WebsitesPageState } from 'app/pages/TagLists/slice/types';
 export interface RootState {
   global: GlobalState;
   websitesPage?: WebsitesPageState;
+  LoginPage?: LoginPageState;
   // [INSERT NEW REDUCER KEY ABOVE] < Needed for generating containers seamlessly
 }

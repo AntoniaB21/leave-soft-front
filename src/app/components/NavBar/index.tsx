@@ -35,7 +35,6 @@ const NavLink = ({ children }: { children: ReactNode }) => (
 
 export default function NavBar  () {
   const { isOpen, onOpen, onClose } = useDisclosure();
-
   return (
     <>
       <Box bg={useColorModeValue('gray.50', 'gray.300')} px={4}>
@@ -84,12 +83,6 @@ export default function NavBar  () {
                   }
                 />
               </MenuButton>
-              <MenuList>
-                <MenuItem>Link 1</MenuItem>
-                <MenuItem>Link 2</MenuItem>
-                <MenuDivider />
-                <MenuItem>Link 3</MenuItem>
-              </MenuList>
             </Menu>
           </Flex>
         </Flex>
@@ -104,8 +97,6 @@ export default function NavBar  () {
           </Box>
         ) : null}
       </Box>
-
-      <Box p={4}>Main Content Here</Box>
     </>
   );
 }

@@ -14,8 +14,14 @@ import {
 } from '@chakra-ui/react';
 import { Logo } from 'app/components/Logo/Loadable';
 
+
 export default function LoginCard() {
+  const handleSubmit= (event) => {
+    alert('hello world!')
+  }
+
   return (
+  <form onSubmit={handleSubmit}>
     <Flex
       minH={'100vh'}
       align={'center'}
@@ -53,7 +59,9 @@ export default function LoginCard() {
                 color={'white'}
                 _hover={{
                   bg: 'blue.500',
-                }}>
+                }}
+                type="submit"
+                >
                 Sign in 
               </Button>
             </Stack>
@@ -61,5 +69,6 @@ export default function LoginCard() {
         </Box>
       </Stack>
     </Flex>
+    </form>
   );
 }
