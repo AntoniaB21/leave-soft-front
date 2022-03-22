@@ -8,6 +8,7 @@ import {
   Icon,
   useColorModeValue,
   createIcon,
+  Link,
 } from '@chakra-ui/react';
 import NavBar from 'app/components/NavBar';
 
@@ -46,27 +47,8 @@ export default function CallToActionWithAnnotation() {
               _hover={{
                 bg: 'green.500',
               }}>
-              Get Started
+              <Link href='/login'>Get Started</Link>
             </Button>
-            <Box>
-              <Icon
-                as={Arrow}
-                color={useColorModeValue('gray.800', 'gray.300')}
-                w={71}
-                position={'absolute'}
-                right={-71}
-                top={'10px'}
-              />
-              <Text
-                fontSize={'lg'}
-                fontFamily={'Caveat'}
-                position={'absolute'}
-                right={'-125px'}
-                top={'-15px'}
-                transform={'rotate(10deg)'}>
-                Starting at $15/mo
-              </Text>
-            </Box>
           </Stack>
         </Stack>
       </Container>
