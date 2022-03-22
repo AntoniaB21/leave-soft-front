@@ -41,6 +41,7 @@ import { Logo } from 'app/components/Logo/Loadable';
    });
  
    const handleSubmit = async (values: typeof form['values']) => {
+     console.log(values);
       dispatch(actions.signInRequest(values));
    };
  
