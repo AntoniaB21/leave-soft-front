@@ -1,74 +1,97 @@
-import {
-  Flex,
-  Box,
-  FormControl,
-  FormLabel,
-  Input,
-  Checkbox,
-  Stack,
-  Link,
-  Button,
-  Heading,
-  Text,
-  useColorModeValue,
-} from '@chakra-ui/react';
+/**
+ *
+ * LoginPage
+ *
+ */
+ import React, { memo, useEffect } from 'react';
+ import styled from 'styled-components/macro';
+ import { TextInput, PasswordInput, Button, Title, Center } from '@mantine/core';
+ import { useForm } from '@mantine/hooks';
+ import { useLoginPageSlice } from './slice';
+ import { useDispatch, useSelector } from 'react-redux';
+ import { selectLoginPage } from './slice/selectors';
+ import { selectGlobal } from 'app/slice/selectors';
+ import { RouteComponentProps } from 'react-router';
 import { Logo } from 'app/components/Logo/Loadable';
-
-
-export default function LoginCard() {
-  const handleSubmit= (event) => {
-    alert('hello world!')
-  }
-
-  return (
-  <form onSubmit={handleSubmit}>
-    <Flex
-      minH={'100vh'}
-      align={'center'}
-      justify={'center'}
-      bg={useColorModeValue('gray.50', 'gray.800')}>
-      <Stack spacing={8} mx={'auto'} maxW={'lg'} py={12} px={6}>
-        <Stack align={'center'}>
-          <Logo/>
-          <Heading fontSize={'4xl'}>Login</Heading>
-        </Stack>
-        <Box
-          rounded={'lg'}
-          bg={useColorModeValue('white', 'gray.700')}
-          boxShadow={'lg'}
-          p={8}>
-          <Stack spacing={4}>
-            <FormControl id="email">
-              <FormLabel>Email</FormLabel>
-              <Input type="email" />
-            </FormControl>
-            <FormControl id="password">
-              <FormLabel>Password</FormLabel>
-              <Input type="password" />
-            </FormControl>
-            <Stack spacing={10}>
-              <Stack
-                direction={{ base: 'column', sm: 'row' }}
-                align={'start'}
-                justify={'space-between'}>
-                <Checkbox>Se souvenir de moi</Checkbox>
-                <Link color={'blue.400'}>Mot de passe oublié ?</Link>
-              </Stack>
-              <Button
-                bg={'blue.400'}
-                color={'white'}
-                _hover={{
-                  bg: 'blue.500',
-                }}
-                type="submit"
-                >
-                Sign in 
-              </Button>
-            </Stack>
-          </Stack>
-        </Box>
-      </Stack>
-    </Flex>
-    </form>
-  );
-}
+ 
+ interface Props extends RouteComponentProps<any> {}
+ 
+ export const LoginPage = memo((props: Props) => {
+   const { actions } = useLoginPageSlice();
+   const dispatch = useDispatch();
+   const { loading } = useSelector(selectLoginPage);
+   const { user } = useSelector(selectGlobal);
+ 
+   useEffect(() => {
+     if (user) {
+       props.history.push('/');
+     }
+ 
+   }, [user]);
+ 
+   const form = useForm({
+     initialValues: {
+       email: '',
+       password: '',
+     },
+ 
+     validationRules: {
+       email: value => /^\S+@\S+$/.test(value),
+     },
+   });
+ 
+   const handleSubmit = async (values: typeof form['values']) => {
+      dispatch(actions.signInRequest(values));
+   };
+ 
+   return (
+     <Div>
+       <FormWrapper>
+         <Center>
+           <Logo/>
+         </Center>
+         <Center>
+           <Title order={2}>Login</Title>
+         </Center>
+         <form onSubmit={form.onSubmit(handleSubmit)}>
+           <TextInput
+             required
+             label="Email"
+             placeholder="your@email.com"
+             {...form.getInputProps('email')}
+           />
+           <PasswordInput
+             placeholder="Password"
+             label="Password"
+             required
+             {...form.getInputProps('password')}
+           />
+           <Center>
+             <Button
+               sx={{
+                 marginTop: '15px',
+               }}
+               type="submit"
+               loading={loading}
+             >
+               Login
+             </Button>
+           </Center>
+         </form>
+       </FormWrapper>
+     </Div>
+   );
+ });
+ 
+ const Div = styled.div`
+   padding: 50px;
+ `;
+ 
+ const FormWrapper = styled.div`
+   width: 70%;
+   position: absolute;
+   top: 50%;
+   left: 50%;
+   transform: translate(-50%, -50%);
+ `;
+ 
