@@ -5,7 +5,7 @@ const instance = axios.create({
   responseType: 'json',
   headers:{
       'Content-Type':'application/json',
-      'Acces-Control-Allow-Origin':'*'
+      'Cors-Allow-Origin':'*'
   }
 });
 
