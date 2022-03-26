@@ -1,20 +1,22 @@
 import { take, call, put, select, takeLatest, delay } from 'redux-saga/effects';
 import api from 'utils/api';
 import { loginPageActions as actions } from '.';
+import axios from 'axios';
 
 function* signIn(action) {
   try {
-    // yield delay(500);
+    console.log('action.payload');
+    console.log(action.payload);
     const { email, password } = action.payload;
-    const user = yield call(api.post, '/authentication_token', action.payload,{
-      headers:{
-        
-      }
+    const user = yield call(api.post, '/authentication_token', {
+      email : action.payload.email,
+      password: action.payload.password
     });
+    // yield delay(500);
     console.log('user response token');
-    console.log(user.data.token);
-    localStorage.setItem('tk', user.data.token);
-    localStorage.setItem('username', user.username);
+    console.log(user);
+    // localStorage.setItem('tk', user.data.token);
+    // localStorage.setItem('username', user.username);
     // yield put(actions.signInSuccess(user.username));
     // window.location.href = '/tags'; // action suivante - construire la page profile
   } catch (error) {

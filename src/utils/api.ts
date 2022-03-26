@@ -2,11 +2,7 @@ import axios from 'axios';
 
 const instance = axios.create({
   baseURL: process.env.REACT_APP_API_URL,
-  responseType: 'json',
-  headers:{
-      'Content-Type':'application/json',
-      'Cors-Allow-Origin':'*'
-  }
+  responseType: 'json'
 });
 
 // instance.interceptors.request.use(
