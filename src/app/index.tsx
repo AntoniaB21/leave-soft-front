@@ -29,7 +29,6 @@ export function App() {
         htmlAttributes={{ lang: i18n.language }}
       >
         <meta name="description" content="Off Planner Application" />
-        <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests" /> 
       </Helmet>
 
       <Switch>
