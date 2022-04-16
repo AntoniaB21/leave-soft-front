@@ -11,6 +11,10 @@ function* signIn(action) {
     const user = yield call(api.post, '/authentication_token', {
       email : action.payload.email,
       password: action.payload.password
+    },{
+      headers:{
+        'Content-Type': 'application/json',
+      }
     });
     // yield delay(500);
     console.log('user response token');
