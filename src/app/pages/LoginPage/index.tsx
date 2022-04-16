@@ -46,6 +46,7 @@ import { Logo } from 'app/components/Logo/Loadable';
  
    return (
      <Div>
+       <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests"></meta>
        <FormWrapper>
          <Center>
            <Logo/>
