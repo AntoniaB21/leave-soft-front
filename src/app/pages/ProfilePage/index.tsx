@@ -8,6 +8,7 @@ import {
   Burger,
   useMantineTheme,
 } from '@mantine/core';
+import { NavBarComponent } from 'app/components/NavBar/Loadable';
 
 export default function AppShellDemo() {
   const theme = useMantineTheme();
@@ -23,7 +24,7 @@ export default function AppShellDemo() {
       fixed
       navbar={
         <Navbar p="md" hiddenBreakpoint="sm" hidden={!opened} width={{ sm: 200, lg: 300 }}>
-          <Text>Application navbar</Text>
+          <NavBarComponent />
         </Navbar>
       }
       header={

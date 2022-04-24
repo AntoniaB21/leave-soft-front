@@ -16,7 +16,6 @@ import {
   Th,
   Tbody,
 } from '@chakra-ui/react';
-import NavBar from 'app/components/NavBar';
 import { useDispatch, useSelector } from 'react-redux';
 import { useWebsitesPageSlice } from './slice';
 import { selectWebsitesPage } from './slice/selectors';
@@ -67,7 +66,6 @@ export const WebsitesPage = memo((props: Props) => {
   
   return (
     <div>
-      <NavBar/>
       <Heading order={2}>Tags</Heading>
       {!loading && (
         <Table variant='simple'>

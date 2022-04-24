@@ -10,7 +10,6 @@ import {
   createIcon,
   Link,
 } from '@chakra-ui/react';
-import NavBar from 'app/components/NavBar';
 
 export default function CallToActionWithAnnotation() {
   return (
