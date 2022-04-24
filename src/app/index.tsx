@@ -18,6 +18,7 @@ import { useTranslation } from "react-i18next";
 import { LoginPage } from "./pages/LoginPage/Loadable";
 import { TagsListsPage } from "./pages/TagLists/Loadable";
 import ProtectedRoute from "./components/ProtectedRoutes";
+import { ProfilePage } from "./pages/ProfilePage/Loadable";
 
 export function App() {
   const { i18n } = useTranslation();
@@ -34,7 +35,8 @@ export function App() {
       <Switch>
         <Route exact path="/" component={HomePage} />
         <Route exact path="/login" component={LoginPage} />
-        <ProtectedRoute exact path="/tags" component={TagsListsPage} />
+        <Route exact path="/tags" component={TagsListsPage} />
+        <Route exact path="/profile" component={ProfilePage} />
         <Route component={NotFoundPage} />
       </Switch>
       <GlobalStyle />

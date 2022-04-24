@@ -21,8 +21,8 @@ function* signIn(action) {
     console.log(user);
     // localStorage.setItem('tk', user.data.token);
     // localStorage.setItem('username', user.username);
-    // yield put(actions.signInSuccess(user.username));
-    // window.location.href = '/tags'; // action suivante - construire la page profile
+    yield put(actions.signInSuccess(user.username));
+    window.location.href = '/tags'; // action suivante - construire la page profile
   } catch (error) {
     console.log('error signing in', error);
   }

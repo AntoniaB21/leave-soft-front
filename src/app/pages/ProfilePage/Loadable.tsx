@@ -4,7 +4,7 @@
 
 import { lazyLoad } from "utils/loadable";
 
-export const HomePage = lazyLoad(
+export const ProfilePage = lazyLoad(
   () => import("./index"),
   (module) => module.default
 );
