@@ -19,6 +19,7 @@ import { LoginPage } from "./pages/LoginPage/Loadable";
 import { TagsListsPage } from "./pages/TagLists/Loadable";
 import ProtectedRoute from "./components/ProtectedRoutes";
 import { ProfilePage } from "./pages/ProfilePage/Loadable";
+import { TakeOffPage } from "./pages/TakeOffPage/Loadable";
 
 export function App() {
   const { i18n } = useTranslation();
@@ -37,6 +38,7 @@ export function App() {
         <Route exact path="/login" component={LoginPage} />
         <Route exact path="/tags" component={TagsListsPage} />
         <Route exact path="/profile" component={ProfilePage} />
+        <Route exact path="/prendre-un-off" component={TakeOffPage} />
         <Route component={NotFoundPage} />
       </Switch>
       <GlobalStyle />

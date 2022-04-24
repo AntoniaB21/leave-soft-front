@@ -1,14 +1,17 @@
 import React from 'react';
-import { CalendarTime, PlaylistAdd, Notification,Settings } from 'tabler-icons-react';
+import { CalendarTime, PlaylistAdd, Notification,Settings,Logout } from 'tabler-icons-react';
 import { ThemeIcon, UnstyledButton, Group, Text } from '@mantine/core';
+import { HomePage } from 'app/pages/HomePage/Loadable';
+import { Link, NavLink } from 'react-router-dom';
 
 interface MainLinkProps {
   icon: React.ReactNode;
   color: string;
   label: string;
+  link: string;
 }
 
-function MainLink({ icon, color, label }: MainLinkProps) {
+function MainLink({ icon, color, label, link }: MainLinkProps) {
   return (
     <UnstyledButton
       sx={(theme) => ({
@@ -24,22 +27,25 @@ function MainLink({ icon, color, label }: MainLinkProps) {
         },
       })}
     >
+      <Link to={link}>
       <Group>
         <ThemeIcon color={color} variant="light">
           {icon}
         </ThemeIcon>
-
-        <Text size="sm">{label}</Text>
+        <Text variant="link" component="a" href={link}>{label}</Text>
       </Group>
+      </Link>
+
     </UnstyledButton>
   );
 }
 
 const data = [
-  { icon: <PlaylistAdd size={50} />, color: 'green', label: 'Prendre un off' },
-  { icon: <CalendarTime size={50} />, color: 'blue', label: 'Consulter le calendrier' },
-  { icon: <Settings size={50} />, color: 'blue', label: 'Paramétrages' },
-  { icon: <Notification size={50} />, color: 'red', label: 'Notifications' }
+  { icon: <PlaylistAdd size={50} />, color: 'green', label: 'Prendre un off', link: 'prendre-un-off'},
+  { icon: <CalendarTime size={50} />, color: 'blue', label: 'Calendrier', link:'calendrier'},
+  { icon: <Settings size={50} />, color: 'blue', label: 'Paramétrages', link:'parametrages'},
+  { icon: <Notification size={50} />, color: 'red', label: 'Notifications', link:'notifications'},
+  { icon: <Logout size={50} />, color: 'white', label: 'Déconnexion', link:'logout'}
 ];
 
 export function MainLinks() {

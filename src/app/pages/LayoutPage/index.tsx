@@ -10,7 +10,6 @@ import {
 } from '@mantine/core';
 import { NavBarComponent } from 'app/components/NavBar/Loadable';
 import { Logo } from 'app/components/Logo/Loadable';
-import { CustomHeader } from 'app/components/Header';
 
 export default function AppShellDemo() {
   const theme = useMantineTheme();
@@ -32,19 +31,19 @@ export default function AppShellDemo() {
       }
       header={
         <Header height={70} p="md">
-        <div style={{ display: 'flex', alignItems: 'center', height: '100%' }}>
-        <MediaQuery largerThan="sm" styles={{ display: 'none' }}>
-            <Burger
-            opened={opened}
-            onClick={() => setOpened((o) => !o)}
-            size={30}
-            color= "#1F66A8"
-            mr="xl"
-            />
-        </MediaQuery>
+          <div style={{ display: 'flex', alignItems: 'center', height: '100%' }}>
+            <MediaQuery largerThan="sm" styles={{ display: 'none' }}>
+              <Burger
+                opened={opened}
+                onClick={() => setOpened((o) => !o)}
+                size={30}
+                color= "#1F66A8"
+                mr="xl"
+              />
+            </MediaQuery>
 
-        <Logo/>
-        </div>
+            <Logo/>
+          </div>
         </Header>
       }
     >
