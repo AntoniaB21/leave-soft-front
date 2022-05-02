@@ -3,8 +3,8 @@
  * ProtectedRoute
  *
  */
-import AdminLayout from 'app/pages/Layout/AdminLayout';
- import { useGlobalSlice } from 'app/slice';
+ import AdminLayout from 'app/pages/LayoutPage';
+import { useGlobalSlice } from 'app/slice';
  import React from 'react';
  import { useSelector, useDispatch } from 'react-redux';
  import { Redirect, Route } from 'react-router-dom';
@@ -25,7 +25,7 @@ import AdminLayout from 'app/pages/Layout/AdminLayout';
        {...rest}
        render={routeProps =>
          loading ? (
-           <p>Loading...</p>
+           <p>En cours de chargement...</p>
          ) : user ? (
            <AdminLayout
              onLogout={handleLogout}
