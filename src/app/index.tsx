@@ -19,6 +19,7 @@ import { LoginPage } from "./pages/LoginPage/Loadable";
 import ProtectedRoute from "./components/ProtectedRoutes";
 import { ProfilePage } from "./pages/ProfilePage/Loadable";
 import { Home } from "tabler-icons-react";
+import { TakeOffRequestPage } from "./pages/TakeOffRequestPage";
 
 export function App() {
   const { i18n } = useTranslation();
@@ -37,7 +38,7 @@ export function App() {
         <Route exact path="/login" component={LoginPage} />
         <ProtectedRoute exact path="/tags" component={HomePage} />
         <ProtectedRoute exact path="/profile" component={ProfilePage} />
-        {/* <Route exact path="/prendre-un-off" component={TakeOffPage} /> */}
+        <Route exact path="/prendre-un-off" component={TakeOffRequestPage} />
         <Route component={NotFoundPage} />
       </Switch>
       <GlobalStyle />

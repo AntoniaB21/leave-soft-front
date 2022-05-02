@@ -7,7 +7,7 @@ import jwtDecode from 'jwt-decode';
 
 export const initialState: GlobalState = {
   user: null,
-  loading: true, // A CHANGER EN FALSE POUR DEV
+  loading: false, // A CHANGER EN FALSE POUR DEV
 };
 
 const slice = createSlice({
