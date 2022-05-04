@@ -1,9 +1,17 @@
 import { take, call, put, select, takeLatest, delay } from 'redux-saga/effects';
 import api from 'utils/api';
-import { loginPageActions as actions } from '.';
+import { initialState, loginPageActions as actions } from '.';
 import axios from 'axios';
+import jwtDecode from 'jwt-decode';
+import { current } from '@reduxjs/toolkit';
+
+function getUser(token){
+  const user = jwtDecode(token);
+  return user;
+}
 
 function* signIn(action) {
+  yield delay(500);
   try {
     console.log('action.payload');
     console.log(action.payload);
@@ -16,13 +24,13 @@ function* signIn(action) {
         'Content-Type': 'application/json',
       }
     });
-    // yield delay(500);
-    console.log('user response token');
-    console.log(user);
-    // localStorage.setItem('tk', user.data.token);
-    // localStorage.setItem('username', user.username);
-    yield put(actions.signInSuccess(user.username));
-    window.location.href = '/tags'; // action suivante - construire la page profile
+    const currentUser = getUser(user.data.token)
+    localStorage.setItem('tk', user.data.token);
+    localStorage.setItem('username', user.email);
+
+    yield put(actions.signInSuccess(user.email));
+    window.location.href ='/profile';
+
   } catch (error) {
     console.log('error signing in', error);
   }

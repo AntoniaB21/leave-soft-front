@@ -48,7 +48,8 @@ export default function AppShellDemo() {
         </Header>
       }
     >
-      <Text>Body of the test</Text>
+  
+      <Text>Texte</Text>
     </AppShell>
     </>
     

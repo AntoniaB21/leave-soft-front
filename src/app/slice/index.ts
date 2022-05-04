@@ -7,7 +7,7 @@ import jwtDecode from 'jwt-decode';
 
 export const initialState: GlobalState = {
   user: null,
-  loading: false, // A CHANGER EN FALSE POUR DEV
+  loading: true, // true
 };
 
 const slice = createSlice({
@@ -15,10 +15,12 @@ const slice = createSlice({
   initialState,
   reducers: {
     getCurrentUser(state) {
+      console.log("getCurrnt");
       const token = localStorage.getItem('tk');
       const username = localStorage.getItem('username');
       if (typeof token === 'string') {
         const user = jwtDecode(token);
+        console.log('token');
         state.user = {
           username: username,
           info: user,
@@ -43,3 +45,15 @@ export const useGlobalSlice = () => {
   useInjectSaga({ key: slice.name, saga: globalSaga });
   return { actions: slice.actions };
 };
+
+/**
+ * Example Usage:
+ *
+ * export function MyComponentNeedingThisSlice() {
+ *  const { actions } = useGlobalSlice();
+ *
+ *  const onButtonClick = (evt) => {
+ *    dispatch(actions.someAction());
+ *   };
+ * }
+ */

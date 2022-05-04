@@ -9,7 +9,7 @@ import { ExitIcon } from '@radix-ui/react-icons';
 import { createStyles } from '@mantine/core';
 
 interface Props {
-  username: string;
+  email: string;
   onLogout: Function;
 }
 
@@ -42,7 +42,7 @@ export const User = memo((props: Props) => {
     <Group>
       <Avatar alt="no image here" />
       <div>
-        <Text size="sm">{props.username}</Text>
+        <Text size="sm">{props.email}</Text>
         <UnstyledButton onClick={handleLogout} className={classes.button}>
           <Text size="sm">
             <ExitIcon className={classes.icon} />

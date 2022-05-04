@@ -11,13 +11,10 @@ import { messages } from "./messages";
 interface Props {}
 
 export const TakeOffRequestPage = memo((props: Props) => {
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  const { t, i18n } = useTranslation();
-
   return (
     <Div>
-      {t("")}
       {/*  {t(...messages.someThing())}  */}
+      Coucou
     </Div>
   );
 });

@@ -20,8 +20,23 @@ import ProtectedRoute from "./components/ProtectedRoutes";
 import { ProfilePage } from "./pages/ProfilePage/Loadable";
 import { Home } from "tabler-icons-react";
 import { TakeOffRequestPage } from "./pages/TakeOffRequestPage";
+import { useGlobalSlice } from "./slice";
+import { useDispatch } from "react-redux";
+
 
 export function App() {
+  const { actions } = useGlobalSlice();
+  const dispatch = useDispatch();
+
+  const useEffectOnMount = (effect: React.EffectCallback) => {
+    React.useEffect(effect, []);
+  };
+
+  useEffectOnMount(() => {
+    // When initial state username is not null, submit the form to load repos
+    dispatch(actions.getCurrentUser());
+  });
+
   const { i18n } = useTranslation();
   return (
     <BrowserRouter>

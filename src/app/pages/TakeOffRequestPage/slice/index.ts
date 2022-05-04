@@ -9,6 +9,7 @@ export const initialState: TakeOffRequestPageState = {
   data: []
 };
 
+/* eslint-disable @typescript-eslint/no-var-requires */
 const slice = createSlice({
   name: "takeOffRequestPage",
   initialState,
