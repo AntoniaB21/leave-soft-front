@@ -17,6 +17,7 @@ import { NavBarComponent } from 'app/components/NavBar/Loadable';
 import { Logo } from 'app/components/Logo/Loadable';
 import { DashboardIcon } from '@radix-ui/react-icons';
 import { NavLink } from 'react-router-dom';
+import { CalendarTime, Logout, Notification, PlaylistAdd, Settings } from 'tabler-icons-react';
 
 const useStyles = createStyles(theme => ({
   icon: {
@@ -67,10 +68,62 @@ const AdminLayout = props => {
                   exact
                 >
                 <ThemeIcon className={classes.icon} size="lg" variant="light">
-                    <DashboardIcon />
+                    <PlaylistAdd />
                   </ThemeIcon>
                       Prendre un off
                       </Button>
+                <Button
+                  className={classes.button}
+                  component={NavLink}
+                  to="/calendrier"
+                  activeClassName="active"
+                  exact
+                >
+                <ThemeIcon className={classes.icon} size="lg" variant="light">
+                    <CalendarTime />
+                  </ThemeIcon>
+                      Calendrier
+                      </Button>
+                      
+                      <Button
+                  className={classes.button}
+                  component={NavLink}
+                  to="/parametrages"
+                  activeClassName="active"
+                  exact
+                >
+                <ThemeIcon className={classes.icon} size="lg" variant="light">
+                    <Settings />
+                  </ThemeIcon>
+                  Paramétrages
+                      </Button>
+
+                      <Button
+                  className={classes.button}
+                  component={NavLink}
+                  to="/notifications"
+                  activeClassName="active"
+                  exact
+                >
+                <ThemeIcon className={classes.icon} size="lg" variant="light">
+                    <Notification />
+                  </ThemeIcon>
+                  Notifications
+                      </Button>
+
+                      <Button
+                  className={classes.button}
+                  component={NavLink}
+                  to="/logout"
+                  activeClassName="active"
+                  exact
+                >
+                <ThemeIcon className={classes.icon} size="lg" variant="light">
+                    <Logout />
+                  </ThemeIcon>
+                  Logout
+                      </Button>
+
                 </Group>
               </div>
               </Navbar.Section>
