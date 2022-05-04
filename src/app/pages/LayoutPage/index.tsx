@@ -18,6 +18,7 @@ import { Logo } from 'app/components/Logo/Loadable';
 import { DashboardIcon } from '@radix-ui/react-icons';
 import { NavLink } from 'react-router-dom';
 import { CalendarTime, Logout, Notification, PlaylistAdd, Settings } from 'tabler-icons-react';
+import { User } from 'app/components/User';
 
 const useStyles = createStyles(theme => ({
   icon: {
@@ -84,7 +85,7 @@ const AdminLayout = props => {
                   </ThemeIcon>
                       Calendrier
                       </Button>
-                      
+
                       <Button
                   className={classes.button}
                   component={NavLink}
@@ -122,11 +123,15 @@ const AdminLayout = props => {
                     <Logout />
                   </ThemeIcon>
                   Logout
-                      </Button>
+                </Button>
 
                 </Group>
               </div>
               </Navbar.Section>
+              <Navbar.Section>
+                  <User onLogout={props.onLogout} username={props.username} />
+          </Navbar.Section>
+          
             </Navbar>
           }
           header={
