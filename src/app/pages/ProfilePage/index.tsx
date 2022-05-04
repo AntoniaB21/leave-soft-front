@@ -15,5 +15,5 @@ import { CustomHeader } from 'app/components/Header';
 export default function AppShellDemo() {
   const theme = useMantineTheme();
   const [opened, setOpened] = useState(false);
-  return <div>ProfilePageContent</div>
+  return <div>Profile Content</div>
 }

@@ -24,7 +24,7 @@ import { Logo } from 'app/components/Logo/Loadable';
  
    useEffect(() => {
      if (user) {
-       props.history.push('/');
+       props.history.push('/profile');
      }
  
    }, [user]);

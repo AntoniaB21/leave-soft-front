@@ -19,8 +19,6 @@ const ProtectedRoute = props => {
   const handleLogout = () => {
     dispatch(actions.logoutCurrentUser())
   }
-  console.log('user dans protected routes');
-  console.log(user);
   return (
      <Route
        {...rest}

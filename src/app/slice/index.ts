@@ -21,13 +21,10 @@ const slice = createSlice({
   initialState,
   reducers: {
     getCurrentUser(state) {
-      console.log("getCurrnt");
       const token = localStorage.getItem('tk');
       const username = localStorage.getItem('username');
       if (typeof token === 'string') {
         const user = jwtDecode<myToken>(token);
-        console.log('token');
-        console.log(user.username);
         state.user = {
           username: user.username,
           info: user,

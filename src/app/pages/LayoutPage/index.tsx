@@ -16,7 +16,7 @@ import {
 import { NavBarComponent } from 'app/components/NavBar/Loadable';
 import { Logo } from 'app/components/Logo/Loadable';
 import { DashboardIcon } from '@radix-ui/react-icons';
-import { NavLink } from 'react-router-dom';
+import { Link, NavLink } from 'react-router-dom';
 import { CalendarTime, Logout, Notification, PlaylistAdd, Settings } from 'tabler-icons-react';
 import { User } from 'app/components/User';
 
@@ -45,9 +45,6 @@ const AdminLayout = props => {
   const { classes } = useStyles();
   const theme = useMantineTheme();
   const [opened, setOpened] = useState(false);
-
-  console.log('Admin Layout');
-  console.log(props);
   return (
         <>
         <AppShell
@@ -60,7 +57,7 @@ const AdminLayout = props => {
           fixed
           navbar={
             <Navbar p="md" hiddenBreakpoint="sm" hidden={!opened} width={{ sm: 200, lg: 300 }}>
-              <Navbar.Section>
+              {/* <Navbar.Section>
               <div>
                 <Group direction="column" grow>
                 <Button
@@ -129,6 +126,109 @@ const AdminLayout = props => {
 
                 </Group>
               </div>
+              </Navbar.Section> */}
+              <Navbar.Section>
+                <UnstyledButton
+                  sx={(theme) => ({
+                    display: 'block',
+                    width: '100%',
+                    padding: theme.spacing.xs,
+                    borderRadius: theme.radius.sm,
+                    color: theme.colorScheme === 'dark' ? theme.colors.dark[0] : theme.black,
+                    activeClassName:"active",
+                    '&:hover': {
+                      backgroundColor:
+                        theme.colorScheme === 'dark' ? theme.colors.dark[6] : theme.colors.gray[0],
+                    },
+                  })}
+                >
+                  <Link to="/prendre-un-off">
+                  <Group>
+                    <ThemeIcon color="green" variant="light">
+                      <PlaylistAdd/>
+                    </ThemeIcon>
+                    <Text variant="link" component="a" href="/prendre-un-off">Prendre un off</Text>
+                  </Group>
+                  </Link>
+                </UnstyledButton>
+                <UnstyledButton
+                  sx={(theme) => ({
+                    display: 'block',
+                    width: '100%',
+                    padding: theme.spacing.xs,
+                    borderRadius: theme.radius.sm,
+                    color: theme.colorScheme === 'dark' ? theme.colors.dark[0] : theme.black,
+
+                    '&:hover': {
+                      backgroundColor:
+                        theme.colorScheme === 'dark' ? theme.colors.dark[6] : theme.colors.gray[0],
+                    },
+                    '&.active': {
+                      backgroundColor: 'rgb(37, 38, 43)',
+                    },
+                  })}
+                >
+                  <Link to="/calendrier">
+                  <Group>
+                    <ThemeIcon color="yellow" variant="light">
+                      <CalendarTime/>
+                    </ThemeIcon>
+                    <Text variant="link" component="a" href="/prendre-un-off">Calendrier</Text>
+                  </Group>
+                  </Link>
+                </UnstyledButton>
+                <UnstyledButton
+                  sx={(theme) => ({
+                    display: 'block',
+                    width: '100%',
+                    padding: theme.spacing.xs,
+                    borderRadius: theme.radius.sm,
+                    color: theme.colorScheme === 'dark' ? theme.colors.dark[0] : theme.black,
+
+                    '&:hover': {
+                      backgroundColor:
+                        theme.colorScheme === 'dark' ? theme.colors.dark[6] : theme.colors.gray[0],
+                    },
+                    '&.active': {
+                      backgroundColor: 'rgb(37, 38, 43)',
+                    },
+                  })}
+                >
+                  <Link to="/parametres">
+                  <Group>
+                    <ThemeIcon color="blue" variant="light">
+                      <Settings/>
+                    </ThemeIcon>
+                    <Text variant="link" component="a" href="/parametres">Paramètres</Text>
+                  </Group>
+                  </Link>
+                </UnstyledButton>
+                <UnstyledButton
+                  sx={(theme) => ({
+                    display: 'block',
+                    width: '100%',
+                    padding: theme.spacing.xs,
+                    borderRadius: theme.radius.sm,
+                    color: theme.colorScheme === 'dark' ? theme.colors.dark[0] : theme.black,
+
+                    '&:hover': {
+                      backgroundColor:
+                        theme.colorScheme === 'dark' ? theme.colors.dark[6] : theme.colors.gray[0],
+                    },
+                    '&.active': {
+                      backgroundColor: 'rgb(37, 38, 43)',
+                    },
+                  })}
+                >
+                  <Link to="/notifications">
+                  <Group>
+                    <ThemeIcon color="grey" variant="light">
+                      <Notification/>
+                    </ThemeIcon>
+                    <Text variant="link" component="a" href="/notifications">Notifications</Text>
+                  </Group>
+                  </Link>
+                </UnstyledButton>
               </Navbar.Section>
               <Navbar.Section>
                   <User onLogout={props.onLogout} username={props.username} />
