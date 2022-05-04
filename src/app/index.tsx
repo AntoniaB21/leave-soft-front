@@ -53,7 +53,7 @@ export function App() {
         <Route exact path="/login" component={LoginPage} />
         <ProtectedRoute exact path="/tags" component={HomePage} />
         <ProtectedRoute exact path="/profile" component={ProfilePage} />
-        <Route exact path="/prendre-un-off" component={TakeOffRequestPage} />
+        <ProtectedRoute exact path="/prendre-un-off" component={TakeOffRequestPage} />
         <Route component={NotFoundPage} />
       </Switch>
       <GlobalStyle />

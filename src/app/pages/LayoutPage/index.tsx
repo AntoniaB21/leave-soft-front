@@ -8,9 +8,15 @@ import {
   Burger,
   useMantineTheme,
   createStyles,
+  Group,
+  Button,
+  UnstyledButton,
+  ThemeIcon,
 } from '@mantine/core';
 import { NavBarComponent } from 'app/components/NavBar/Loadable';
 import { Logo } from 'app/components/Logo/Loadable';
+import { DashboardIcon } from '@radix-ui/react-icons';
+import { NavLink } from 'react-router-dom';
 
 const useStyles = createStyles(theme => ({
   icon: {
@@ -50,7 +56,24 @@ const AdminLayout = props => {
           fixed
           navbar={
             <Navbar p="md" hiddenBreakpoint="sm" hidden={!opened} width={{ sm: 200, lg: 300 }}>
-              <NavBarComponent />
+              <Navbar.Section>
+              <div>
+                <Group direction="column" grow>
+                <Button
+                  className={classes.button}
+                  component={NavLink}
+                  to="/prendre-un-off"
+                  activeClassName="active"
+                  exact
+                >
+                <ThemeIcon className={classes.icon} size="lg" variant="light">
+                    <DashboardIcon />
+                  </ThemeIcon>
+                      Prendre un off
+                      </Button>
+                </Group>
+              </div>
+              </Navbar.Section>
             </Navbar>
           }
           header={
