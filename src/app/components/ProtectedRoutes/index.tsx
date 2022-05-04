@@ -19,7 +19,8 @@ const ProtectedRoute = props => {
   const handleLogout = () => {
     dispatch(actions.logoutCurrentUser())
   }
-
+  console.log('user dans protected routes');
+  console.log(user);
   return (
      <Route
        {...rest}
@@ -32,6 +33,7 @@ const ProtectedRoute = props => {
              ? (
            <AdminLayout
              onLogout={handleLogout}
+             username={user.username}
              {...routeProps}
            >
              <Component {...routeProps} />

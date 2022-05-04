@@ -37,7 +37,8 @@
      console.log('logout');
      props.onLogout();
    };
- 
+
+   
    return (
      <Group>
        <Avatar alt="no image here" />

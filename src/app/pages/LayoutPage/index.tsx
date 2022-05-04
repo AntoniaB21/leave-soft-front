@@ -45,7 +45,9 @@ const AdminLayout = props => {
   const { classes } = useStyles();
   const theme = useMantineTheme();
   const [opened, setOpened] = useState(false);
-  
+
+  console.log('Admin Layout');
+  console.log(props);
   return (
         <>
         <AppShell
