@@ -7,8 +7,14 @@ import jwtDecode from 'jwt-decode';
 
 export const initialState: GlobalState = {
   user: null,
-  loading: true, // true
+  loading: true,
 };
+
+interface myToken{
+  token: string,
+  exp:number,
+  username:string,
+}
 
 const slice = createSlice({
   name: 'global',
@@ -19,10 +25,11 @@ const slice = createSlice({
       const token = localStorage.getItem('tk');
       const username = localStorage.getItem('username');
       if (typeof token === 'string') {
-        const user = jwtDecode(token);
+        const user = jwtDecode<myToken>(token);
         console.log('token');
+        console.log(user.username);
         state.user = {
-          username: username,
+          username: user.username,
           info: user,
         };
         state.loading = false;

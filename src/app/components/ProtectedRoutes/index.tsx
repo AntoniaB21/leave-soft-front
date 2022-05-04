@@ -20,8 +20,6 @@ const ProtectedRoute = props => {
     dispatch(actions.logoutCurrentUser())
   }
 
-  console.log(user);
-
   return (
      <Route
        {...rest}
