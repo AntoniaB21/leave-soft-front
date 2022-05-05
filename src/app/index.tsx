@@ -18,10 +18,10 @@ import { useTranslation } from "react-i18next";
 import { LoginPage } from "./pages/LoginPage/Loadable";
 import ProtectedRoute from "./components/ProtectedRoutes";
 import { Home } from "tabler-icons-react";
-import { TakeOffRequestPage } from "./pages/TakeOffRequestPage";
 import { useGlobalSlice } from "./slice";
 import { useDispatch } from "react-redux";
 import { ProfilePage } from "./pages/ProfilePage";
+import { OffRequestAdd } from "./pages/OffRequestAdd/Loadable";
 
 
 export function App() {
@@ -53,7 +53,7 @@ export function App() {
         <Route exact path="/login" component={LoginPage} />
         <ProtectedRoute exact path="/tags" component={HomePage} />
         <ProtectedRoute exact path="/profile/:id" component={ProfilePage} />
-        <ProtectedRoute exact path="/prendre-un-off" component={TakeOffRequestPage} />
+        <ProtectedRoute exact path="/prendre-un-off/" component={OffRequestAdd} />
         <Route component={NotFoundPage} />
       </Switch>
       <GlobalStyle />

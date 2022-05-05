@@ -42,6 +42,8 @@ const useStyles = createStyles(theme => ({
 
 
 const AdminLayout = props => {
+  console.log('props');
+  console.log(props);
   const { classes } = useStyles();
   const theme = useMantineTheme();
   const [opened, setOpened] = useState(false);

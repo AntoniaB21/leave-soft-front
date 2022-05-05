@@ -61,9 +61,9 @@ export const ProfilePage = memo((props: Props) => {
           </ThemeIcon>
         }
       >
-         <span>Jours restants : {data.daysLeft}</span>
-         <span>Jours acquis : {data.daysEarned}</span>
-         <span>Jours pris : {data.daysTaken}</span>
+         <p>Jours restants : {data.daysLeft}</p>
+         <p>Jours acquis : {data.daysEarned}</p>
+         <p>Jours pris : {data.daysTaken}</p>
       </Accordion.Item>
 
       <Accordion.Item
@@ -77,11 +77,9 @@ export const ProfilePage = memo((props: Props) => {
       <p>Team: <Badge>{data.teams["name"]}</Badge></p>
       <p>Contrat: <Badge>{data.tagItems[0]["name"]}</Badge></p>
       <p>Depuis : {data.dateEntrance}</p>
-
       </Accordion.Item>
-
       <Accordion.Item
-        label="Vos demandes de congés"
+        label="Votre dernière demande de congés"
         icon={
           <ThemeIcon color="blue" variant="light">
             <Flame size={14} />
@@ -93,6 +91,7 @@ export const ProfilePage = memo((props: Props) => {
             Mes demandes
           </Button></a>
       </Accordion.Item>
+      
     </Accordion>
 
     </Div>
