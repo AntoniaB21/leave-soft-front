@@ -172,7 +172,7 @@ const AdminLayout = props => {
                     <ThemeIcon color="yellow" variant="light">
                       <CalendarTime/>
                     </ThemeIcon>
-                    <Text variant="link" component="a" href="/prendre-un-off">Calendrier</Text>
+                    <Text variant="link" component="a" href="/mes-offs">Mes off</Text>
                   </Group>
                 </UnstyledButton>
                 <UnstyledButton
