@@ -3,6 +3,7 @@ import { GlobalState } from 'app//slice/types';
 import { LoginPageState } from 'app/pages/LoginPage/slice/types';
 import { TakeOffRequestPageState } from 'app/pages/TakeOffRequestPage/slice/types';
 import { LoginUserPageState } from 'app/pages/LoginUserPage/slice/types';
+import { ProfilePageState } from 'app/pages/ProfilePage/slice/types';
 // [IMPORT NEW CONTAINERSTATE ABOVE] < Needed for generating containers seamlessly
 
 /*
@@ -14,5 +15,6 @@ export interface RootState {
   LoginPage?: LoginPageState;
   takeOffRequestPage?: TakeOffRequestPageState;
   loginUserPage?: LoginUserPageState;
+  profilePage?: ProfilePageState;
   // [INSERT NEW REDUCER KEY ABOVE] < Needed for generating containers seamlessly
 }

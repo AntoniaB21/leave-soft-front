@@ -1,19 +1,25 @@
-import React, { useState } from 'react';
-import {
-  AppShell,
-  Navbar,
-  Header,
-  Text,
-  MediaQuery,
-  Burger,
-  useMantineTheme,
-} from '@mantine/core';
-import { NavBarComponent } from 'app/components/NavBar/Loadable';
-import { Logo } from 'app/components/Logo/Loadable';
-import { CustomHeader } from 'app/components/Header';
+/**
+ *
+ * ProfilePage
+ *
+ */
+import React, { memo } from 'react';
+import styled from 'styled-components/macro';
+import { useTranslation } from 'react-i18next';
+import { messages } from './messages';
 
-export default function AppShellDemo() {
-  const theme = useMantineTheme();
-  const [opened, setOpened] = useState(false);
-  return <div>Profile Content</div>
-}
+interface Props {}
+
+export const ProfilePage = memo((props: Props) => {
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  const { t, i18n } = useTranslation();
+
+  return (
+    <Div>
+      {t('')}
+      {/*  {t(...messages.someThing())}  */}
+    </Div>
+  );
+});
+
+const Div = styled.div``;

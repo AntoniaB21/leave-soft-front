@@ -17,7 +17,6 @@ import { NotFoundPage } from "./components/NotFoundPage/Loadable";
 import { useTranslation } from "react-i18next";
 import { LoginPage } from "./pages/LoginPage/Loadable";
 import ProtectedRoute from "./components/ProtectedRoutes";
-import { ProfilePage } from "./pages/ProfilePage/Loadable";
 import { Home } from "tabler-icons-react";
 import { TakeOffRequestPage } from "./pages/TakeOffRequestPage";
 import { useGlobalSlice } from "./slice";
@@ -52,7 +51,7 @@ export function App() {
         <Route exact path="/" component={HomePage} />
         <Route exact path="/login" component={LoginPage} />
         <ProtectedRoute exact path="/tags" component={HomePage} />
-        <ProtectedRoute exact path="/profile" component={ProfilePage} />
+        {/* <ProtectedRoute exact path="/profile" component={ProfilePage} /> */}
         <ProtectedRoute exact path="/prendre-un-off" component={TakeOffRequestPage} />
         <Route component={NotFoundPage} />
       </Switch>
