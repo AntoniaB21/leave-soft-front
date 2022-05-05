@@ -7,7 +7,7 @@ type Params = { payload: { [k: string]: any }; type: string };
 function* getUserInfo({ payload }: Params) {
   try {
     const userInfo = yield call(api.get, `api/users/${payload.id}`);
-    yield put(actions.loadUserInfoRequest(userInfo.data[0]));
+    yield put(actions.loadUserInfoSuccess(userInfo.data));
   } catch (error) {
     console.log(error);
     yield put(

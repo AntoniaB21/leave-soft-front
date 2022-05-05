@@ -11,15 +11,26 @@ import { RouteComponentProps } from 'react-router';
 import { useProfilePageSlice } from './slice';
 import { useDispatch, useSelector } from 'react-redux';
 import { selectProfilePage } from './slice/selectors';
+import { createStyles, Grid,Title } from '@mantine/core';
+import { Palette, Flame } from 'tabler-icons-react';
+import { ThemeIcon, Accordion, Space, Container} from '@mantine/core';
 
 interface Props extends RouteComponentProps<any> {}
 
+const useStyles = createStyles((theme, _params, getRef) => {
+  return {
+    container:{
+      backgroundColor: theme.colors.pink[0],
+    }
+  };
+});
+
 export const ProfilePage = memo((props: Props) => {
+  const { classes } = useStyles();
   const { actions } = useProfilePageSlice(); // lui
   const dispatch = useDispatch();
   const { data, loading } = useSelector(selectProfilePage);
-  // const [popupOpened, setPopupOpened] = React.useState(false);
-
+  const [popupOpened, setPopupOpened] = React.useState(false);
   const useEffectOnMount = (effect: React.EffectCallback) => {
     useEffect(effect, []);
   };
@@ -29,7 +40,45 @@ export const ProfilePage = memo((props: Props) => {
   });
 
   return (
-      <h1>Coucou</h1>
+    <Div>
+            <p>Bonjour</p>
+          <Title order={5}>{data.firstName} {data.lastName}</Title>
+          <p>Ce mois-ci il vous reste </p>
+          <Title order={2}>{data.daysLeft}</Title>
+          <p>jours</p>
+
+      <Space h="md" />
+
+      <Accordion disableIconRotation>
+      <Accordion.Item
+        label="Statistiques"
+        icon={
+          <ThemeIcon color="blue" variant="light">
+            <Palette size={14} />
+          </ThemeIcon>
+        }
+      >
+         <span>Jours restants : {data.daysLeft}</span>
+         <span>Jours acquis : {data.daysEarned}</span>
+         <span>Jours pris : {data.daysTaken}</span>
+      </Accordion.Item>
+
+      <Accordion.Item
+        label="Informations personnelles"
+        icon={
+          <ThemeIcon color="blue" variant="light">
+            <Flame size={14} />
+          </ThemeIcon>
+        }
+      >
+      <p>Dans l'entreprise depuis : {data.dateEntrance}</p>
+      <p>Team: {data.dateEntrance}</p>
+      <p>Type de contrat: {data.dateEntrance}</p>
+      </Accordion.Item>
+    </Accordion>
+
+    </Div>
+    
   );
 });
 
