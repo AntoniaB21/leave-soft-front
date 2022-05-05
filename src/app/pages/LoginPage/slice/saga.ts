@@ -31,7 +31,7 @@ function* signIn(action) {
     localStorage.setItem('xyz', user.data.xyz);
 
     yield put(actions.signInSuccess(user.email));
-    window.location.href ='/profile';
+    window.location.href =`/profile/${user.data.xyz}`;
 
   } catch (error) {
     console.log('error signing in', error);
