@@ -42,7 +42,7 @@ const useStyles = createStyles(theme => ({
 
 
 const AdminLayout = props => {
-  console.log('props');
+  console.log('props in admin layout');
   console.log(props);
   const { classes } = useStyles();
   const theme = useMantineTheme();

@@ -1,7 +1,6 @@
 
 import { GlobalState } from 'app//slice/types';
 import { LoginPageState } from 'app/pages/LoginPage/slice/types';
-import { TakeOffRequestPageState } from 'app/pages/TakeOffRequestPage/slice/types';
 import { LoginUserPageState } from 'app/pages/LoginUserPage/slice/types';
 import { ProfilePageState } from 'app/pages/ProfilePage/slice/types';
 import { OffRequestAddState } from 'app/pages/OffRequestAdd/slice/types';
@@ -14,7 +13,6 @@ import { OffRequestAddState } from 'app/pages/OffRequestAdd/slice/types';
 export interface RootState {
   global: GlobalState;
   LoginPage?: LoginPageState;
-  takeOffRequestPage?: TakeOffRequestPageState;
   loginUserPage?: LoginUserPageState;
   profilePage?: ProfilePageState;
   offRequestAdd?: OffRequestAddState;

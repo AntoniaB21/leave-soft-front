@@ -4,13 +4,23 @@ import { useInjectReducer, useInjectSaga } from 'utils/redux-injectors';
 import { offRequestAddSaga } from './saga';
 import { OffRequestAddState } from './types';
 
-export const initialState: OffRequestAddState = {};
+export const initialState: OffRequestAddState = {
+  loading: false
+};
 
 const slice = createSlice({
   name: 'offRequestAdd',
   initialState,
   reducers: {
-    someAction(state, action: PayloadAction<any>) {},
+    addOffRequestInProgress(state, action: PayloadAction<any>) {
+      state.loading=true;
+    },
+    addOffRequestSuccess(state, action: PayloadAction<any>) {
+      state.loading=false;
+    },
+    addOffRequestFailure(state, action: PayloadAction<any>) {
+      state.loading=false;
+    },
   },
 });
 
