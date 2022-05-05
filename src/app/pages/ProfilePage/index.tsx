@@ -11,7 +11,7 @@ import { RouteComponentProps } from 'react-router';
 import { useProfilePageSlice } from './slice';
 import { useDispatch, useSelector } from 'react-redux';
 import { selectProfilePage } from './slice/selectors';
-import { createStyles, Grid,Title } from '@mantine/core';
+import { Badge, Button, createStyles, Grid,Title } from '@mantine/core';
 import { Palette, Flame } from 'tabler-icons-react';
 import { ThemeIcon, Accordion, Space, Container} from '@mantine/core';
 
@@ -41,12 +41,15 @@ export const ProfilePage = memo((props: Props) => {
 
   return (
     <Div>
-            <p>Bonjour</p>
+        <p>Bonjour</p>
           <Title order={5}>{data.firstName} {data.lastName}</Title>
           <p>Ce mois-ci il vous reste </p>
           <Title order={2}>{data.daysLeft}</Title>
           <p>jours</p>
 
+          <a href="/prendre-un-off"><Button variant="gradient" gradient={{ from: 'indigo', to: 'cyan' }}>
+            Prendre un off
+          </Button></a>
       <Space h="md" />
 
       <Accordion disableIconRotation>
@@ -71,9 +74,13 @@ export const ProfilePage = memo((props: Props) => {
           </ThemeIcon>
         }
       >
-      <p>Dans l'entreprise depuis : {data.dateEntrance}</p>
-      <p>Team: {data.dateEntrance}</p>
-      <p>Type de contrat: {data.dateEntrance}</p>
+      <p>Team: <Badge>{data.teams["name"]}</Badge></p>
+      <p>Contrat: <Badge>{data.tagItems[0]["name"]}</Badge></p>
+      <p>Depuis : {data.dateEntrance}</p>
+      {/* <p>Type de contrat: {data.tagItems.map((tagItem) => {
+        <Badge>{tagItem.name}</Badge>
+      })}</p> */}
+
       </Accordion.Item>
     </Accordion>
 
