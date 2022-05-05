@@ -24,9 +24,11 @@ function* signIn(action) {
         'Content-Type': 'application/json',
       }
     });
-    const currentUser = getUser(user.data.token)
+    console.log('response token');
+    console.log(user.data.token);
     localStorage.setItem('tk', user.data.token);
     localStorage.setItem('username', user.email);
+    localStorage.setItem('xyz', user.data.xyz);
 
     yield put(actions.signInSuccess(user.email));
     window.location.href ='/profile';

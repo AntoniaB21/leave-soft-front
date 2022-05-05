@@ -23,11 +23,15 @@ const slice = createSlice({
     getCurrentUser(state) {
       const token = localStorage.getItem('tk');
       const username = localStorage.getItem('username');
+      const userId = localStorage.getItem('xyz');
       if (typeof token === 'string') {
         const user = jwtDecode<myToken>(token);
+        console.log('user decode');
+        console.log(user);
         state.user = {
           username: user.username,
           info: user,
+          xyz: userId,
         };
         state.loading = false;
       } else {

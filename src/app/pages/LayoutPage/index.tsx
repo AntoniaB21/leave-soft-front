@@ -142,14 +142,12 @@ const AdminLayout = props => {
                     },
                   })}
                 >
-                  <Link to="/prendre-un-off">
                   <Group>
                     <ThemeIcon color="green" variant="light">
                       <PlaylistAdd/>
                     </ThemeIcon>
                     <Text variant="link" component="a" href="/prendre-un-off">Prendre un off</Text>
                   </Group>
-                  </Link>
                 </UnstyledButton>
                 <UnstyledButton
                   sx={(theme) => ({
@@ -168,14 +166,12 @@ const AdminLayout = props => {
                     },
                   })}
                 >
-                  <Link to="/calendrier">
                   <Group>
                     <ThemeIcon color="yellow" variant="light">
                       <CalendarTime/>
                     </ThemeIcon>
                     <Text variant="link" component="a" href="/prendre-un-off">Calendrier</Text>
                   </Group>
-                  </Link>
                 </UnstyledButton>
                 <UnstyledButton
                   sx={(theme) => ({
@@ -194,14 +190,12 @@ const AdminLayout = props => {
                     },
                   })}
                 >
-                  <Link to="/parametres">
                   <Group>
                     <ThemeIcon color="blue" variant="light">
                       <Settings/>
                     </ThemeIcon>
                     <Text variant="link" component="a" href="/parametres">Paramètres</Text>
                   </Group>
-                  </Link>
                 </UnstyledButton>
                 <UnstyledButton
                   sx={(theme) => ({
@@ -220,20 +214,17 @@ const AdminLayout = props => {
                     },
                   })}
                 >
-                  <Link to="/notifications">
                   <Group>
                     <ThemeIcon color="grey" variant="light">
                       <Notification/>
                     </ThemeIcon>
                     <Text variant="link" component="a" href="/notifications">Notifications</Text>
                   </Group>
-                  </Link>
                 </UnstyledButton>
               </Navbar.Section>
               <Navbar.Section>
                   <User onLogout={props.onLogout} username={props.username} />
-          </Navbar.Section>
-          
+              </Navbar.Section>
             </Navbar>
           }
           header={
@@ -254,9 +245,7 @@ const AdminLayout = props => {
             </Header>
           }
         >
-        <div style={{ marginLeft: '220px', minHeight: '100vh' }}>
           {props.children}
-        </div>
       </AppShell>
         </>
         
