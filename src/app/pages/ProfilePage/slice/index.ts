@@ -25,7 +25,16 @@ const slice = createSlice({
   name: 'profilePage',
   initialState,
   reducers: {
-    someAction(state, action: PayloadAction<any>) {},
+    loadUserInfoRequest(state, action: PayloadAction<any>) {
+      state.loading = true;
+    },
+    loadUserInfoSuccess(state, action: PayloadAction<any>) {
+      state.data = action.payload;
+      state.loading = false;
+    },
+    loadUserInfoFailure(state, action: PayloadAction<any>) {
+      state.loading = false;
+    },
   },
 });
 
