@@ -17,7 +17,7 @@ export const ProfilePage = memo((props: Props) => {
   return (
     <Div>
       {t('')}
-      {/*  {t(...messages.someThing())}  */}
+      Coucou
     </Div>
   );
 });

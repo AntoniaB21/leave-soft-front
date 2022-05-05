@@ -6,7 +6,7 @@ export interface ProfilePageState {
         email:string,
         firstName:string,
         lastName:string,
-        offRequest:[
+        offRequests:[
             {
                 [key: string]: any;
             }

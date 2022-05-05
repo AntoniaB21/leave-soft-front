@@ -4,7 +4,22 @@ import { useInjectReducer, useInjectSaga } from 'utils/redux-injectors';
 import { profilePageSaga } from './saga';
 import { ProfilePageState } from './types';
 
-export const initialState: ProfilePageState = {};
+export const initialState: ProfilePageState = {
+  loading: false,
+  data: {
+    id: 0,
+    email: '',
+    firstName: '',
+    lastName: '',
+    offRequests: [{}],
+    teams: [{}],
+    dateEntrance: '',
+    tagItems: [{}],
+    daysEarned: 0,
+    daysTaken: 0,
+    daysLeft: 0
+  }
+};
 
 const slice = createSlice({
   name: 'profilePage',
