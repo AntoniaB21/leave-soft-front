@@ -10,13 +10,14 @@ import { messages } from './messages';
 import { Button, Textarea, TextInput, Title } from '@mantine/core';
 import { DatePicker } from '@mantine/dates';
 import { useForm } from '@mantine/hooks';
-import { Link } from 'react-router-dom';
+import { Link, RouteComponentProps } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { selectGlobal } from 'app/slice/selectors';
 import { useOffRequestAddSlice } from './slice';
 import { selectOffRequestAdd } from './slice/selectors';
 
-interface Props {}
+interface Props extends RouteComponentProps<any> {}
+
 export const OffRequestAdd = memo((props: Props) => {
   const { actions } = useOffRequestAddSlice();
   const dispatch = useDispatch();
@@ -25,16 +26,46 @@ export const OffRequestAdd = memo((props: Props) => {
  
   console.log('props in request add page');
   console.log(props);
-  console.log('user');
-  console.log(user.xyz);
+
+  const form = useForm({
+    initialValues: {
+      dateStart: '',
+      dateEnd: '',
+      comments: '',
+      user:`/api/users/${user.xyz}`,
+      count:0
+    },
+  });
+
+  const handleSubmit = async (values: typeof form['values']) => {
+    console.log(values);
+    values['count']=10;
+    dispatch(actions.addOffRequestInProgress(values));
+  };
+
   return (
     <Div>
       {/*  {t(...messages.someThing())}  */}
       <Title order={2}>Prendre un off</Title>
       <form>
-      <DatePicker placeholder="Pick date" label="Date de début" required />
-      <DatePicker placeholder="Pick date" label="Date de fin" required />
-      <Textarea placeholder="Your comment" label="Your comment"/>
+      <DatePicker 
+          placeholder="Pick date"
+          label="Date de début"
+          required
+          {...form.getInputProps('dateStart')}
+      />
+      <DatePicker 
+          placeholder="Pick date"
+          label="Date de fin"
+          required
+          {...form.getInputProps('dateEnd')}
+      />
+      <Textarea 
+          placeholder="Your comment"
+          label="Your comment"
+          {...form.getInputProps('comments')}
+      />
+      
       <Button
                sx={{
                  marginTop: '15px',
@@ -42,7 +73,7 @@ export const OffRequestAdd = memo((props: Props) => {
                type="submit"
                loading={loading}
              >
-               Sauvegarder
+              Sauvegarder
       </Button>
       <a href={`/profile/${user.xyz}`}>Retour à l'accueil</a>
       </form>

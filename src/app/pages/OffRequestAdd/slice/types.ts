@@ -1,4 +1,5 @@
 /* --- STATE --- */
 export interface OffRequestAddState {
-    loading:boolean
+    loading:boolean,
+    data:[]
 }

@@ -5,7 +5,8 @@ import { offRequestAddSaga } from './saga';
 import { OffRequestAddState } from './types';
 
 export const initialState: OffRequestAddState = {
-  loading: false
+  loading: false,
+  data: []
 };
 
 const slice = createSlice({
@@ -13,6 +14,7 @@ const slice = createSlice({
   initialState,
   reducers: {
     addOffRequestInProgress(state, action: PayloadAction<any>) {
+      state.data = action.payload;
       state.loading=true;
     },
     addOffRequestSuccess(state, action: PayloadAction<any>) {
