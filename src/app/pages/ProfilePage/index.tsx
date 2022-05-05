@@ -77,10 +77,21 @@ export const ProfilePage = memo((props: Props) => {
       <p>Team: <Badge>{data.teams["name"]}</Badge></p>
       <p>Contrat: <Badge>{data.tagItems[0]["name"]}</Badge></p>
       <p>Depuis : {data.dateEntrance}</p>
-      {/* <p>Type de contrat: {data.tagItems.map((tagItem) => {
-        <Badge>{tagItem.name}</Badge>
-      })}</p> */}
 
+      </Accordion.Item>
+
+      <Accordion.Item
+        label="Vos demandes de congés"
+        icon={
+          <ThemeIcon color="blue" variant="light">
+            <Flame size={14} />
+          </ThemeIcon>
+        }
+      >
+        Pour visualiser vos demandes de congés
+        <a href="/mes-demandes"><Button variant="gradient" gradient={{ from: 'indigo', to: 'cyan' }}>
+            Mes demandes
+          </Button></a>
       </Accordion.Item>
     </Accordion>
 
