@@ -220,7 +220,7 @@ const AdminLayout = props => {
                     <ThemeIcon color="grey" variant="light">
                       <Notification/>
                     </ThemeIcon>
-                    <Text variant="link" component="a" href="/notifications">Notifications</Text>
+                    <Text variant="link" component="a" href="/mes-notifications">Notifications</Text>
                   </Group>
                 </UnstyledButton>
               </Navbar.Section>

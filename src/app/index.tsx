@@ -23,6 +23,7 @@ import { useDispatch } from "react-redux";
 import { ProfilePage } from "./pages/ProfilePage";
 import { OffRequestAdd } from "./pages/OffRequestAdd/Loadable";
 import { MyOffsList } from "./pages/MyOffsList";
+import { NotificationsPage } from "./pages/NotificationsPage";
 
 
 export function App() {
@@ -56,6 +57,7 @@ export function App() {
         <ProtectedRoute exact path="/profile/:id" component={ProfilePage} />
         <ProtectedRoute exact path="/prendre-un-off/" component={OffRequestAdd} />
         <ProtectedRoute exact path="/mes-offs/" component={MyOffsList} />
+        <ProtectedRoute exact path="/mes-notifications/" component={NotificationsPage} />
         <Route component={NotFoundPage} />
       </Switch>
       <GlobalStyle />
