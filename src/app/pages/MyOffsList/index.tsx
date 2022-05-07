@@ -3,7 +3,7 @@
  * MyOffsList
  *
  */
-import React, { memo, useEffect } from 'react';
+import React, { memo, useEffect, useState } from 'react';
 import styled from 'styled-components/macro';
 import { useTranslation } from 'react-i18next';
 import { messages } from './messages';
@@ -13,15 +13,35 @@ import { selectGlobal } from 'app/slice/selectors';
 import { selectMyOffsList } from './slice/selectors';
 import { useMyOffsListSlice } from './slice';
 import { selectProfilePage } from '../ProfilePage/slice/selectors';
-import { Badge, Table, Title } from '@mantine/core';
+import { Badge, Button, createStyles, Modal, Table, Title } from '@mantine/core';
 import { Ballpen, Eye, Pencil, X } from 'tabler-icons-react';
 interface Props extends RouteComponentProps<any> {}
 
 export const MyOffsList = memo((props: Props) => {
+  const useStyles = createStyles((theme, _params, getRef) => {
+    return {
+      pagination: {
+        marginTop: 10,
+        float: 'right',
+      },
+      button:{
+        '&:hover': {
+          cursor: 'pointer',
+        },
+      },
+      modal:{
+        backgroundColor:'white',
+        opacity:1
+      }
+    };
+  });
   const { actions } = useMyOffsListSlice();
   const dispatch = useDispatch();
   const { data, loading } = useSelector(selectMyOffsList);
   const { user } = useSelector(selectGlobal);
+  const [opened, setOpened] = useState(false);
+
+  const { classes } = useStyles();
 
   const useEffectOnMount = (effect: React.EffectCallback) => {
     useEffect(effect, []);
@@ -40,7 +60,7 @@ export const MyOffsList = memo((props: Props) => {
         return "red";
         break;
       case "draft":
-        return "grey";
+        return "gray";
         break;
       case "pending":
         return "orange";
@@ -51,7 +71,7 @@ export const MyOffsList = memo((props: Props) => {
     }
   }
 
-  console.log(badgeColor["accepted"]);
+  // console.log(new Date(data[0]['dateStart']).toDateString());
 
   return (
     <Div>
@@ -68,10 +88,22 @@ export const MyOffsList = memo((props: Props) => {
         {data.map(item =>
         <>
         <tr key={item['@id']}>
-          <td>Du {item['dateStart']} au {item['dateEnd']}</td>
+          <td>Du {new Date(item['dateStart']).toLocaleDateString()} au {new Date(item['dateEnd']).toLocaleDateString()}</td>
             <td><Badge color={badgeColor(item['status'])}>{item['status']}</Badge></td>
             <td>
-              <Eye size={20}></Eye><Pencil size={20}></Pencil><X size={20}></X>
+            <Eye size={20} onClick={() => setOpened(true)} className={classes.button}></Eye>
+            <Pencil size={20} className={classes.button}></Pencil>
+            <X size={20} className={classes.button}></X>
+            <Modal
+              opened={opened}
+              onClose={() => setOpened(false)}
+              title={item['dateStart']}
+              className={classes.modal}
+            >
+              <p><span>Du:{new Date(item['dateStart']).toLocaleDateString()} au {new Date(item['dateEnd']).toLocaleDateString()}</span></p>
+              <p><span>Nombre de jours: {item['count']}</span></p>
+              <p><span>Commentaires: {item['comments']}</span></p>
+            </Modal>
           </td>
         </tr>
         </>

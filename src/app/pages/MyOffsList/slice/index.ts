@@ -6,7 +6,8 @@ import { MyOffsListState } from './types';
 
 export const initialState: MyOffsListState = {
   loading: false,
-  data:[],
+  data: [],
+  message: ''
 };
 
 const slice = createSlice({
@@ -22,6 +23,7 @@ const slice = createSlice({
     },
     loadMyOffRequestFailure(state, action: PayloadAction<any>) {
       state.loading=false;
+      state.message="failed to load"
     },
   },
 });
