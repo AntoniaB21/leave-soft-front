@@ -13,8 +13,6 @@ function getUser(token){
 function* signIn(action) {
   yield delay(500);
   try {
-    console.log('action.payload');
-    console.log(action.payload);
     const { email, password } = action.payload;
     const user = yield call(api.post, '/authentication_token', {
       email : action.payload.email,
@@ -24,8 +22,6 @@ function* signIn(action) {
         'Content-Type': 'application/json',
       }
     });
-    console.log('response token');
-    console.log(user.data.token);
     localStorage.setItem('tk', user.data.token);
     localStorage.setItem('username', user.email);
     localStorage.setItem('xyz', user.data.xyz);

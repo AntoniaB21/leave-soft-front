@@ -26,8 +26,6 @@ const slice = createSlice({
       const userId = localStorage.getItem('xyz');
       if (typeof token === 'string') {
         const user = jwtDecode<myToken>(token);
-        console.log('user decode');
-        console.log(user);
         state.user = {
           username: user.username,
           info: user,

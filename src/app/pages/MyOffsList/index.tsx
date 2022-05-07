@@ -15,6 +15,8 @@ import { useMyOffsListSlice } from './slice';
 import { selectProfilePage } from '../ProfilePage/slice/selectors';
 import { Badge, Button, createStyles, Modal, Table, Title } from '@mantine/core';
 import { Ballpen, Eye, Pencil, X } from 'tabler-icons-react';
+import { Popup } from 'app/components/Common/Popup';
+
 interface Props extends RouteComponentProps<any> {}
 
 export const MyOffsList = memo((props: Props) => {
@@ -71,8 +73,6 @@ export const MyOffsList = memo((props: Props) => {
     }
   }
 
-  // console.log(new Date(data[0]['dateStart']).toDateString());
-
   return (
     <Div>
       <Title order={3}>Mes demandes de congés</Title>
@@ -94,16 +94,21 @@ export const MyOffsList = memo((props: Props) => {
             <Eye size={20} onClick={() => setOpened(true)} className={classes.button}></Eye>
             <Pencil size={20} className={classes.button}></Pencil>
             <X size={20} className={classes.button}></X>
-            <Modal
+            <Popup
               opened={opened}
               onClose={() => setOpened(false)}
-              title={item['dateStart']}
-              className={classes.modal}
+              size={'90%'}
+              title={'PopUp ouvert'}
+              overflow={'inside'}
+              content={
+                <>
+                  <p><span>Du:{new Date(item['dateStart']).toLocaleDateString()} au {new Date(item['dateEnd']).toLocaleDateString()}</span></p>
+                  <p><span>Nombre de jours: {item['count']}</span></p>
+                  <p><span>Commentaires: {item['comments']}</span></p>
+                </>
+              }
             >
-              <p><span>Du:{new Date(item['dateStart']).toLocaleDateString()} au {new Date(item['dateEnd']).toLocaleDateString()}</span></p>
-              <p><span>Nombre de jours: {item['count']}</span></p>
-              <p><span>Commentaires: {item['comments']}</span></p>
-            </Modal>
+            </Popup>
           </td>
         </tr>
         </>
