@@ -7,7 +7,7 @@ import React, { memo } from 'react';
 import styled from 'styled-components/macro';
 import { useTranslation } from 'react-i18next';
 import { messages } from './messages';
-import { Button, Textarea, TextInput, Title } from '@mantine/core';
+import { Alert, Button, Textarea, TextInput, Title } from '@mantine/core';
 import { DatePicker } from '@mantine/dates';
 import { useForm } from '@mantine/hooks';
 import { Link, RouteComponentProps } from 'react-router-dom';
@@ -15,25 +15,22 @@ import { useDispatch, useSelector } from 'react-redux';
 import { selectGlobal } from 'app/slice/selectors';
 import { useOffRequestAddSlice } from './slice';
 import { selectOffRequestAdd } from './slice/selectors';
+import { AlertCircle } from 'tabler-icons-react';
 
 interface Props extends RouteComponentProps<any> {}
 
 export const OffRequestAdd = memo((props: Props) => {
   const { actions } = useOffRequestAddSlice();
   const dispatch = useDispatch();
-   const { loading, message } = useSelector(selectOffRequestAdd);
+   const { loading, message, messageColor } = useSelector(selectOffRequestAdd);
    const { user } = useSelector(selectGlobal); // get the user in global state
- 
-  console.log('props in request add page');
-  console.log(props);
 
   const form = useForm({
     initialValues: {
       dateStart: '',
       dateEnd: '',
       comments: '',
-      user:`/api/users/${user.xyz}`,
-      count:0
+      user:``,
     },
   });
 
@@ -42,10 +39,15 @@ export const OffRequestAdd = memo((props: Props) => {
     console.log(values);
     dispatch(actions.addOffRequestInProgress(values));
   };
-
+  console.log({message});
   return (
     <Div>
-      <p>{message}</p>
+      {
+        message != '' &&
+          <Alert icon={<AlertCircle size={16} />} title="Message" color={messageColor}>
+            {message}
+          </Alert>
+      }
       <Title order={2}>Prendre un off</Title>
       <form onSubmit={form.onSubmit(handleSubmit)}>
       <DatePicker 

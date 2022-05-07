@@ -7,7 +7,8 @@ import { OffRequestAddState } from './types';
 export const initialState: OffRequestAddState = {
   loading: false,
   data: [],
-  message:'',
+  message: '',
+  messageColor: ''
 };
 
 const slice = createSlice({
@@ -20,10 +21,12 @@ const slice = createSlice({
     },
     addOffRequestSuccess(state, action: PayloadAction<any>) {
       state.message = action.payload.message;
+      state.messageColor = action.payload.messageColor;
       state.loading=false;
     },
     addOffRequestFailure(state, action: PayloadAction<any>) {
       state.message= action.payload.message;
+      state.messageColor = action.payload.messageColor;
       state.loading=false;
     },
   },
