@@ -33,7 +33,7 @@ export const NotificationsPage = memo((props: Props) => {
 
   console.log('data in notifications page');
   console.log(data[0]["message"]);
-
+  
   return (
     <Div>
       <Title>Mes notifications</Title>
