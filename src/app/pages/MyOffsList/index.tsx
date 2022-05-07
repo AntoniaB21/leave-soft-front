@@ -31,6 +31,28 @@ export const MyOffsList = memo((props: Props) => {
     dispatch(actions.loadMyOffRequestInProgress({ id: user.xyz }));
   });
 
+  function badgeColor (element) {
+    switch (element) {
+      case "accepted":
+        return "green";
+        break;
+      case "rejected":
+        return "red";
+        break;
+      case "draft":
+        return "grey";
+        break;
+      case "pending":
+        return "orange";
+        break;
+      default:
+        return "white";
+        break;
+    }
+  }
+
+  console.log(badgeColor["accepted"]);
+
   return (
     <Div>
       <Title order={3}>Mes demandes de congés</Title>
@@ -45,9 +67,9 @@ export const MyOffsList = memo((props: Props) => {
         <tbody>
         {data.map(item =>
         <>
-        <tr>
+        <tr key={item['@id']}>
           <td>Du {item['dateStart']} au {item['dateEnd']}</td>
-            <td><Badge>{item['status']}</Badge></td>
+            <td><Badge color={badgeColor(item['status'])}>{item['status']}</Badge></td>
             <td>
               <Eye size={20}></Eye><Pencil size={20}></Pencil><X size={20}></X>
           </td>
