@@ -21,7 +21,7 @@ interface Props extends RouteComponentProps<any> {}
 export const OffRequestAdd = memo((props: Props) => {
   const { actions } = useOffRequestAddSlice();
   const dispatch = useDispatch();
-   const { loading } = useSelector(selectOffRequestAdd);
+   const { loading, message } = useSelector(selectOffRequestAdd);
    const { user } = useSelector(selectGlobal); // get the user in global state
  
   console.log('props in request add page');
@@ -38,17 +38,18 @@ export const OffRequestAdd = memo((props: Props) => {
   });
 
   const handleSubmit = async (values: typeof form['values']) => {
+    console.log('values');
     console.log(values);
-    values['count']=10;
     dispatch(actions.addOffRequestInProgress(values));
   };
 
   return (
     <Div>
-      {/*  {t(...messages.someThing())}  */}
+      <p>{message}</p>
       <Title order={2}>Prendre un off</Title>
-      <form>
+      <form onSubmit={form.onSubmit(handleSubmit)}>
       <DatePicker 
+          allowFreeInput
           placeholder="Pick date"
           label="Date de début"
           required

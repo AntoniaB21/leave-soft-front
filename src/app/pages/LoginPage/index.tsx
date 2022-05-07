@@ -12,7 +12,7 @@
  import { selectLoginPage } from './slice/selectors';
  import { selectGlobal } from 'app/slice/selectors';
  import { RouteComponentProps } from 'react-router';
-import { Logo } from 'app/components/Logo/Loadable';
+ import { Logo } from 'app/components/Logo/Loadable';
  
  interface Props extends RouteComponentProps<any> {}
  

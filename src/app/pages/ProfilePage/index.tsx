@@ -27,7 +27,7 @@ const useStyles = createStyles((theme, _params, getRef) => {
 
 export const ProfilePage = memo((props: Props) => {
   const { classes } = useStyles();
-  const { actions } = useProfilePageSlice(); // lui
+  const { actions } = useProfilePageSlice();
   const dispatch = useDispatch();
   const { data, loading } = useSelector(selectProfilePage);
   const [popupOpened, setPopupOpened] = React.useState(false);

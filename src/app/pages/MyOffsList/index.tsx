@@ -73,6 +73,23 @@ export const MyOffsList = memo((props: Props) => {
     }
   }
 
+  const viewOffRequestDetails = item => {
+    <Popup
+    opened={opened}
+    handleClose={() => setOpened(false)}
+    size={'90%'}
+    title={'PopUp ouvert'}
+    overflow={'inside'}
+    content={
+      <>
+        <p><span>Du:{new Date(item['dateStart']).toLocaleDateString()} au {new Date(item['dateEnd']).toLocaleDateString()}</span></p>
+        <p><span>Nombre de jours: {item['count']}</span></p>
+        <p><span>Commentaires: {item['comments']}</span></p>
+      </>
+    }
+  >
+  </Popup>
+  }
   return (
     <Div>
       <Title order={3}>Mes demandes de congés</Title>
@@ -92,23 +109,27 @@ export const MyOffsList = memo((props: Props) => {
             <td><Badge color={badgeColor(item['status'])}>{item['status']}</Badge></td>
             <td>
             <Eye size={20} onClick={() => setOpened(true)} className={classes.button}></Eye>
-            <Pencil size={20} className={classes.button}></Pencil>
-            <X size={20} className={classes.button}></X>
             <Popup
               opened={opened}
-              onClose={() => setOpened(false)}
+              handleClose={() => setOpened(false)}
               size={'90%'}
               title={'PopUp ouvert'}
               overflow={'inside'}
               content={
                 <>
-                  <p><span>Du:{new Date(item['dateStart']).toLocaleDateString()} au {new Date(item['dateEnd']).toLocaleDateString()}</span></p>
+                  <p><span>Du: {new Date(item['dateStart']).toLocaleDateString()} au {new Date(item['dateEnd']).toLocaleDateString()}</span></p>
                   <p><span>Nombre de jours: {item['count']}</span></p>
                   <p><span>Commentaires: {item['comments']}</span></p>
                 </>
               }
             >
             </Popup>
+            { item['status'] === 'draft' && 
+                  <>
+                    <X size={20} className={classes.button} onClick={() => setOpened(true)}></X>
+                    <Pencil size={20} className={classes.button}></Pencil>
+                  </>
+            }
           </td>
         </tr>
         </>

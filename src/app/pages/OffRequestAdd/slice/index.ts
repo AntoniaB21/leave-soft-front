@@ -6,7 +6,8 @@ import { OffRequestAddState } from './types';
 
 export const initialState: OffRequestAddState = {
   loading: false,
-  data: []
+  data: [],
+  message:'',
 };
 
 const slice = createSlice({
@@ -18,9 +19,11 @@ const slice = createSlice({
       state.loading=true;
     },
     addOffRequestSuccess(state, action: PayloadAction<any>) {
+      state.message = action.payload.message;
       state.loading=false;
     },
     addOffRequestFailure(state, action: PayloadAction<any>) {
+      state.message= action.payload.message;
       state.loading=false;
     },
   },
