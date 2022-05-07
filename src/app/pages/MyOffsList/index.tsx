@@ -20,9 +20,10 @@ export const MyOffsList = memo((props: Props) => {
   const dispatch = useDispatch();
   const { loading } = useSelector(selectMyOffsList);
   const { user } = useSelector(selectGlobal);
+  
   return (
     <Div>
-      Coucou mes offs
+      Coucou mes offs list
     </Div>
   );
 });
