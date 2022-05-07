@@ -1,3 +1,4 @@
+import { STATUS_CODES } from 'http';
 import { format } from 'path';
 import { take, call, put, select, takeLatest } from 'redux-saga/effects';
 import api from 'utils/api';
@@ -26,9 +27,19 @@ function* postOffRequestFlow(action) {
         messageColor:'green'
       })); 
     }
-    window.location.href =`/prendre-un-off`;
   } catch (error) {
-    console.log('error', error);
+    console.log('error', error.response.status);
+    switch (error.response.status) {
+      case 422:
+        error.message = 'Vous avez deja des demandes en attente ou validées à ces dates'
+        break;
+      case 401:
+        error.message = 'Votre session a expiré veuillez vous reconnecter'
+        break;
+      default:
+        error.message = 'Une erreur est survenue. Veuillez recommencer'
+        break;
+    }
     yield put(actions.addOffRequestFailure({
       message: `${error.message}`,
       messageColor:'red'
