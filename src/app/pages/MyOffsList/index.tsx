@@ -14,7 +14,7 @@ import { selectMyOffsList } from './slice/selectors';
 import { useMyOffsListSlice } from './slice';
 import { selectProfilePage } from '../ProfilePage/slice/selectors';
 import { ActionIcon, Badge, Button, createStyles, Group, Modal, Table, Title } from '@mantine/core';
-import { Ballpen, Eye, Pencil, Trash, X } from 'tabler-icons-react';
+import { Ballpen, Eye, Pencil, PlaylistAdd, Trash, X } from 'tabler-icons-react';
 import { Popup } from 'app/components/Common/Popup';
 
 interface Props extends RouteComponentProps<any> {}
@@ -34,6 +34,10 @@ export const MyOffsList = memo((props: Props) => {
       modal:{
         backgroundColor:'white',
         opacity:1
+      },
+      textSpan:{
+        fontSize:"11.5px",
+        fontWeight:200,
       }
     };
   });
@@ -93,6 +97,9 @@ export const MyOffsList = memo((props: Props) => {
   return (
     <Div>
       <Title order={3}>Mes demandes de congés</Title>
+      <Group spacing={0} position="right">
+        <ActionIcon color="green" variant="light"><PlaylistAdd/></ActionIcon>
+      </Group>
       <Table verticalSpacing="sm">
         <thead>
           <tr>
@@ -105,10 +112,14 @@ export const MyOffsList = memo((props: Props) => {
         {data.map(item =>
         <>
         <tr key={item['@id']}>
-          <td>Du {new Date(item['dateStart']).toLocaleDateString()} au {new Date(item['dateEnd']).toLocaleDateString()}</td>
+          <td>
+            <span className={classes.textSpan}>
+              Du {new Date(item['dateStart']).toLocaleDateString()} au {new Date(item['dateEnd']).toLocaleDateString()}
+            </span>
+              </td>
             <td><Badge color={badgeColor(item['status'])}>{item['status']}</Badge></td>
             <td>
-            <ActionIcon color="gray"><Eye size={20} onClick={() => setOpened(true)}></Eye></ActionIcon>
+            <Group spacing={0} position="right"></Group>
             <Popup
               opened={opened}
               handleClose={() => setOpened(false)}
@@ -124,14 +135,19 @@ export const MyOffsList = memo((props: Props) => {
               }
             >
             </Popup>
-            { item['status'] === 'draft' && 
+            <Group spacing={0} position="left">
+                  { item['status'] === 'draft' && 
                   <>
-                  <Group>
-                    <ActionIcon color="grey"><Pencil size={16}></Pencil></ActionIcon>
-                    <ActionIcon color="red"><Trash size={16} onClick={() => setOpened(true)}></Trash></ActionIcon>
-                  </Group>
+                      <ActionIcon>
+                        <Pencil size={16} />
+                      </ActionIcon>
+                      <ActionIcon color="red">
+                        <Trash size={16} />
+                      </ActionIcon>
                   </>
-            }
+                  }
+            {/* <ActionIcon color="gray"><Eye size={20} onClick={() => setOpened(true)}></Eye></ActionIcon> */}
+            </Group>
           </td>
         </tr>
         </>

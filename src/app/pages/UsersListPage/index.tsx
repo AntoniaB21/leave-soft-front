@@ -15,10 +15,12 @@ import {
   Anchor,
   ScrollArea,
   useMantineTheme,
-  Title
+  Title,
+  Button,
+  ThemeIcon
 } from '@mantine/core';
-import { Pencil, Trash } from 'tabler-icons-react';
-import { RouteComponentProps } from 'react-router-dom';
+import { Eye, Pencil, PlaylistAdd, Trash } from 'tabler-icons-react';
+import { Link, RouteComponentProps } from 'react-router-dom';
 import { useUsersListPageSlice } from './slice';
 import { useDispatch, useSelector } from 'react-redux';
 import { selectUsersListPage } from './slice/selectors';
@@ -54,8 +56,8 @@ export const UsersListPage = memo((props: Props) => {
   const rows = data.map((item) => (
     <tr key={item['@id']}>
       <td>
-        <Group spacing="sm">
-          <Text size="sm" weight={500}>
+        <Group spacing={0}>
+          <Text size="xs" weight={200}>
             {item['firstName']} {item['lastName']}
           </Text>
         </Group>
@@ -80,12 +82,14 @@ export const UsersListPage = memo((props: Props) => {
       </td>
     </tr>
   ));
-
-  return <Div>
-    <Title order={2}>Utilisateurs</Title>
+  return <><Div>
     <ScrollArea>
+    <Title order={2}>Utilisateurs</Title>
+    <Group spacing={0} position="right">
+        <ActionIcon color="green" variant="light" aria-label="Settings" component={Link} to='/add-user'><PlaylistAdd/></ActionIcon>
+    </Group>
     <Table>
-    <thead>
+        <thead>
           <tr>
             <th>Salarié</th>
             <th>Team</th>
@@ -94,9 +98,12 @@ export const UsersListPage = memo((props: Props) => {
           </tr>
         </thead>
         <tbody>{rows}</tbody>
-    </Table>
+      </Table>
     </ScrollArea>
   </Div>
+  </>
 });
 
-const Div = styled.div``;
+const Div = styled.div`
+padding:10px,
+`;
