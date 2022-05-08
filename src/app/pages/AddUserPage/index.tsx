@@ -37,6 +37,7 @@ const dispatch = useDispatch();
 
   useEffectOnMount(() => {
     dispatch(actions.loadTeamRequest({}));
+    dispatch(actions.loadTagChildrenRequest({}));
   });
   
   const handleSubmit = async (values: typeof form['values']) => {
@@ -46,6 +47,8 @@ const dispatch = useDispatch();
   };
   
   console.log(teams);
+  console.log('tagChildren');
+  console.log(tagChildren);
   return <Div>
       <Title order={2}>Ajouter un utilisateur</Title>
       <form onSubmit={form.onSubmit(handleSubmit)}>
@@ -75,10 +78,7 @@ const dispatch = useDispatch();
       <Select
           label="Type de contrat"
           placeholder="Pick one"
-          data={[
-            { value: 'CDI', label: 'CDI' },
-            { value: 'CDD', label: 'CDD' },
-          ]}
+          data={tagChildren.map(tagChild => tagChild['description'])}
           {...form.getInputProps('contrat')}
       />
       <Space h="md" />

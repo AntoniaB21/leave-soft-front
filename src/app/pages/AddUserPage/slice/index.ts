@@ -33,7 +33,17 @@ const slice = createSlice({
     },
     loadTeamFailure(state, action: PayloadAction<any>) {
       state.loading = false;
-    }
+    },
+    loadTagChildrenRequest(state, action: PayloadAction<any>) {
+      state.loading = true;
+    },
+    loadTagChildrenSuccess(state, action: PayloadAction<any>) {
+      state.tagChildren = action.payload;
+      state.loading = true;
+    },
+    loadTagChildrenFailure(state, action: PayloadAction<any>) {
+      state.loading = true;
+    },
   },
 });
 

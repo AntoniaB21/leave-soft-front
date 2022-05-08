@@ -20,6 +20,26 @@ function* getTeams() {
   }
 }
 
+function* loadTagChildrenContracts() {
+  try {
+    const tagChildren =  yield call(api.get, `api/tags/1/tag_childrens`,{
+      headers:{
+        'Content-Type':'application/json'
+      }
+    });
+    console.log('load tag children');
+    yield put(actions.loadTagChildrenSuccess(tagChildren.data["hydra:member"]));
+
+  } catch (error) {
+    console.log('ERROR',error);
+    yield put(
+      actions.loadTagChildrenFailure({
+        message:'Failed to load tag children'
+      }
+    ));
+  }
+}
 export function* addUserPageSaga() {
   yield takeLatest(actions.loadTeamRequest.type, getTeams);
+  yield takeLatest(actions.loadTagChildrenRequest.type, loadTagChildrenContracts);
 }
