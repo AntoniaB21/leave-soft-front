@@ -4,13 +4,25 @@ import { useInjectReducer, useInjectSaga } from 'utils/redux-injectors';
 import { addUserPageSaga } from './saga';
 import { AddUserPageState } from './types';
 
-export const initialState: AddUserPageState = {};
-
+export const initialState: AddUserPageState = {
+  loading: false,
+  data: [],
+  message: '',
+  messageColor: ''
+};
 const slice = createSlice({
   name: 'addUserPage',
   initialState,
   reducers: {
-    someAction(state, action: PayloadAction<any>) {},
+    addUserRequest(state, action: PayloadAction<any>) {
+      state.loading = true;
+    },
+    addUserSuccess(state, action: PayloadAction<any>) {
+      state.loading = false;
+    },
+    addUserFailure(state, action: PayloadAction<any>) {
+      state.loading = false;
+    },
   },
 });
 
