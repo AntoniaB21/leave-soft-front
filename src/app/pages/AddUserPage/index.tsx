@@ -6,11 +6,12 @@
 import { Select, Space, TextInput, Title } from '@mantine/core';
 import { useForm } from '@mantine/hooks';
 import { SaveButton } from 'app/components/Common/SaveButton';
-import React, { memo } from 'react';
-import { useDispatch } from 'react-redux';
+import React, { memo, useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import { RouteComponentProps } from 'react-router-dom';
 import styled from 'styled-components/macro';
 import { useAddUserPageSlice } from './slice';
+import { selectAddUserPage } from './slice/selectors';
 
 type NewType = RouteComponentProps<any>;
 
@@ -19,13 +20,23 @@ interface Props extends NewType {}
 export const AddUserPage = memo((props: Props) => {
 const dispatch = useDispatch();
   const { actions } = useAddUserPageSlice();
+  const { teams, tagChildren, loading, message, messageColor } = useSelector(selectAddUserPage);
+
   const form = useForm({
     initialValues: {
       email: '',
       password: '',
-      team: '',
+      team: [],
       contrat:``,
     },
+  });
+
+  const useEffectOnMount = (effect: React.EffectCallback) => {
+    useEffect(effect, []);
+  };
+
+  useEffectOnMount(() => {
+    dispatch(actions.loadTeamRequest({}));
   });
   
   const handleSubmit = async (values: typeof form['values']) => {
@@ -34,6 +45,7 @@ const dispatch = useDispatch();
     dispatch(actions.addUserRequest(values));
   };
   
+  console.log(teams);
   return <Div>
       <Title order={2}>Ajouter un utilisateur</Title>
       <form onSubmit={form.onSubmit(handleSubmit)}>
@@ -56,12 +68,7 @@ const dispatch = useDispatch();
       <Select
           label="Equipe"
           placeholder="Pick one"
-          data={[
-            { value: 'react', label: 'React' },
-            { value: 'ng', label: 'Angular' },
-            { value: 'svelte', label: 'Svelte' },
-            { value: 'vue', label: 'Vue' },
-          ]}
+          data={teams.map(team => team['name'])}
           {...form.getInputProps('team')}
       />
       <Space h="md" />

@@ -1,7 +1,8 @@
 /* --- STATE --- */
 export interface AddUserPageState {
     loading:boolean,
-    data:[],
+    teams:[],
+    tagChildren:[],
     message:string,
     messageColor:string,
 }

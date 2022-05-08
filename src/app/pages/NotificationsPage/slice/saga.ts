@@ -6,7 +6,11 @@ type Params = { payload: { [k: string]: any }; type: string };
 
 function* getNotifications({ payload }: Params) {
   try {
-    const userNotifs = yield call(api.get, `api/users/${payload.id}/notifications`);
+    const userNotifs = yield call(api.get, `api/users/${payload.id}/notifications`,{
+      headers:{
+        'Content-Type':'application/json'
+      }
+    });
     console.log('userNotifs');
     console.log(userNotifs);
     yield put(actions.loadNotificationsSuccess(userNotifs.data['hydra:member']));

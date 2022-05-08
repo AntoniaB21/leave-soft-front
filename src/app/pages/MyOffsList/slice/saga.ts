@@ -6,7 +6,11 @@ type Params = { payload: { [k: string]: any }; type: string };
 
 function* getMyOffsRequests({ payload }: Params) {
   try {
-  const offRequests = yield call(api.get,`/api/users/${payload.id}/off_requests`);
+  const offRequests = yield call(api.get,`/api/users/${payload.id}/off_requests`,{
+    headers:{
+      'Content-Type':'application/json'
+    }
+  });
   yield put(actions.loadMyOffRequestSuccess(offRequests.data["hydra:member"]));
   } catch (error) {
     console.log(error);

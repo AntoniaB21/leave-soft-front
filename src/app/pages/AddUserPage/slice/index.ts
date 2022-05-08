@@ -6,7 +6,8 @@ import { AddUserPageState } from './types';
 
 export const initialState: AddUserPageState = {
   loading: false,
-  data: [],
+  teams: [],
+  tagChildren: [],
   message: '',
   messageColor: ''
 };
@@ -23,6 +24,16 @@ const slice = createSlice({
     addUserFailure(state, action: PayloadAction<any>) {
       state.loading = false;
     },
+    loadTeamRequest(state, action: PayloadAction<any>) {
+      state.loading = true;
+    },
+    loadTeamSuccess(state, action: PayloadAction<any>) {
+      state.teams = action.payload;
+      state.loading = false;
+    },
+    loadTeamFailure(state, action: PayloadAction<any>) {
+      state.loading = false;
+    }
   },
 });
 
