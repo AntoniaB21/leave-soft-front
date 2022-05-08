@@ -48,7 +48,7 @@ export const OffRequestAdd = memo((props: Props) => {
             {message}
           </Alert>
       }
-      <Title order={2}>Prendre un off</Title>
+      <Title order={2}>Prendre un congés</Title>
       <form onSubmit={form.onSubmit(handleSubmit)}>
       <DatePicker 
           allowFreeInput

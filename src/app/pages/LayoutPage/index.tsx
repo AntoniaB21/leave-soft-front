@@ -14,10 +14,11 @@ import {
   ThemeIcon,
 } from '@mantine/core';
 import { Logo } from 'app/components/Logo/Loadable';
-import { DashboardIcon } from '@radix-ui/react-icons';
-import { Link, NavLink } from 'react-router-dom';
-import { CalendarTime, Logout, Notification, PlaylistAdd, Settings } from 'tabler-icons-react';
+import { CalendarTime, Logout, Notes, Notification, PlaylistAdd, Settings, ThumbUp, UserExclamation, Users } from 'tabler-icons-react';
 import { User } from 'app/components/User';
+import { useSelector } from 'react-redux';
+import { selectGlobal } from 'app/slice/selectors';
+import { Thumb } from '@mantine/core/lib/components/ColorPicker/Thumb/Thumb';
 
 const useStyles = createStyles(theme => ({
   icon: {
@@ -42,8 +43,11 @@ const useStyles = createStyles(theme => ({
 
 const AdminLayout = props => {
   const { classes } = useStyles();
+  const { user } = useSelector(selectGlobal);
   const theme = useMantineTheme();
   const [opened, setOpened] = useState(false);
+  console.log('user');
+  console.log(user);
   return (
         <>
         <AppShell
@@ -56,76 +60,6 @@ const AdminLayout = props => {
           fixed
           navbar={
             <Navbar p="md" hiddenBreakpoint="sm" hidden={!opened} width={{ sm: 200, lg: 300 }}>
-              {/* <Navbar.Section>
-              <div>
-                <Group direction="column" grow>
-                <Button
-                  className={classes.button}
-                  component={NavLink}
-                  to="/prendre-un-off"
-                  activeClassName="active"
-                  exact
-                >
-                <ThemeIcon className={classes.icon} size="lg" variant="light">
-                    <PlaylistAdd />
-                  </ThemeIcon>
-                      Prendre un off
-                      </Button>
-                <Button
-                  className={classes.button}
-                  component={NavLink}
-                  to="/calendrier"
-                  activeClassName="active"
-                  exact
-                >
-                <ThemeIcon className={classes.icon} size="lg" variant="light">
-                    <CalendarTime />
-                  </ThemeIcon>
-                      Calendrier
-                      </Button>
-
-                      <Button
-                  className={classes.button}
-                  component={NavLink}
-                  to="/parametrages"
-                  activeClassName="active"
-                  exact
-                >
-                <ThemeIcon className={classes.icon} size="lg" variant="light">
-                    <Settings />
-                  </ThemeIcon>
-                  Paramétrages
-                      </Button>
-
-                      <Button
-                  className={classes.button}
-                  component={NavLink}
-                  to="/notifications"
-                  activeClassName="active"
-                  exact
-                >
-                <ThemeIcon className={classes.icon} size="lg" variant="light">
-                    <Notification />
-                  </ThemeIcon>
-                  Notifications
-                      </Button>
-
-                      <Button
-                  className={classes.button}
-                  component={NavLink}
-                  to="/logout"
-                  activeClassName="active"
-                  exact
-                >
-                <ThemeIcon className={classes.icon} size="lg" variant="light">
-                    <Logout />
-                  </ThemeIcon>
-                  Logout
-                </Button>
-
-                </Group>
-              </div>
-              </Navbar.Section> */}
               <Navbar.Section>
                 <UnstyledButton
                   sx={(theme) => ({
@@ -145,7 +79,7 @@ const AdminLayout = props => {
                     <ThemeIcon color="green" variant="light">
                       <PlaylistAdd/>
                     </ThemeIcon>
-                    <Text variant="link" component="a" href="/prendre-un-off">Prendre un off</Text>
+                    <Text variant="link" component="a" href="/prendre-un-off">Faire une demande</Text>
                   </Group>
                 </UnstyledButton>
                 <UnstyledButton
@@ -169,33 +103,146 @@ const AdminLayout = props => {
                     <ThemeIcon color="yellow" variant="light">
                       <CalendarTime/>
                     </ThemeIcon>
-                    <Text variant="link" component="a" href="/mes-offs">Mes off</Text>
+                    <Text variant="link" component="a" href="/mes-offs">Mes congés</Text>
                   </Group>
                 </UnstyledButton>
-                <UnstyledButton
-                  sx={(theme) => ({
-                    display: 'block',
-                    width: '100%',
-                    padding: theme.spacing.xs,
-                    borderRadius: theme.radius.sm,
-                    color: theme.colorScheme === 'dark' ? theme.colors.dark[0] : theme.black,
+                
+                   {
+                        user.info.roles.includes('ROLE_ADMIN') &&
+                        <>
+                        <UnstyledButton
+                            sx={(theme) => ({
+                              display: 'block',
+                              width: '100%',
+                              padding: theme.spacing.xs,
+                              borderRadius: theme.radius.sm,
+                              color: theme.colorScheme === 'dark' ? theme.colors.dark[0] : theme.black,
 
-                    '&:hover': {
-                      backgroundColor:
-                        theme.colorScheme === 'dark' ? theme.colors.dark[6] : theme.colors.gray[0],
-                    },
-                    '&.active': {
-                      backgroundColor: 'rgb(37, 38, 43)',
-                    },
-                  })}
-                >
-                  <Group>
-                    <ThemeIcon color="blue" variant="light">
-                      <Settings/>
-                    </ThemeIcon>
-                    <Text variant="link" component="a" href="/parametres">Paramètres</Text>
-                  </Group>
-                </UnstyledButton>
+                              '&:hover': {
+                                backgroundColor:
+                                  theme.colorScheme === 'dark' ? theme.colors.dark[6] : theme.colors.gray[0],
+                              },
+                              '&.active': {
+                                backgroundColor: 'rgb(37, 38, 43)',
+                              },
+                            })}
+      
+                            >
+                            <Group>
+                              <ThemeIcon color="blue" variant="light">
+                                <Users/>
+                              </ThemeIcon>
+                              <Text variant="link" component="a" href="/parametres">Users</Text>
+                            </Group>
+                      </UnstyledButton>
+
+                      <UnstyledButton
+                            sx={(theme) => ({
+                              display: 'block',
+                              width: '100%',
+                              padding: theme.spacing.xs,
+                              borderRadius: theme.radius.sm,
+                              color: theme.colorScheme === 'dark' ? theme.colors.dark[0] : theme.black,
+                              '&:hover': {
+                                backgroundColor:
+                                  theme.colorScheme === 'dark' ? theme.colors.dark[6] : theme.colors.gray[0],
+                              },
+                              '&.active': {
+                                backgroundColor: 'rgb(37, 38, 43)',
+                              },
+                            })}
+                            >
+                            <Group>
+                              <ThemeIcon color="red" variant="light">
+                                <Users/>
+                              </ThemeIcon>
+                              <Text variant="link" component="a" href="/parametres">Teams</Text>
+                            </Group>
+                      </UnstyledButton>
+
+                      <UnstyledButton
+                            sx={(theme) => ({
+                              display: 'block',
+                              width: '100%',
+                              padding: theme.spacing.xs,
+                              borderRadius: theme.radius.sm,
+                              color: theme.colorScheme === 'dark' ? theme.colors.dark[0] : theme.black,
+
+                              '&:hover': {
+                                backgroundColor:
+                                  theme.colorScheme === 'dark' ? theme.colors.dark[6] : theme.colors.gray[0],
+                              },
+                              '&.active': {
+                                backgroundColor: 'rgb(37, 38, 43)',
+                              },
+                            })}
+      
+                            >
+                            <Group>
+                              <ThemeIcon color="yellow" variant="light">
+                                <Notes/>
+                              </ThemeIcon>
+                              <Text variant="link" component="a" href="/workflow">Tags</Text>
+                            </Group>
+                      </UnstyledButton>
+
+                      <UnstyledButton
+                            sx={(theme) => ({
+                              display: 'block',
+                              width: '100%',
+                              padding: theme.spacing.xs,
+                              borderRadius: theme.radius.sm,
+                              color: theme.colorScheme === 'dark' ? theme.colors.dark[0] : theme.black,
+
+                              '&:hover': {
+                                backgroundColor:
+                                  theme.colorScheme === 'dark' ? theme.colors.dark[6] : theme.colors.gray[0],
+                              },
+                              '&.active': {
+                                backgroundColor: 'rgb(37, 38, 43)',
+                              },
+                            })}
+      
+                            >
+                            <Group>
+                              <ThemeIcon color="blue" variant="light">
+                                <UserExclamation/>
+                              </ThemeIcon>
+                              <Text variant="link" component="a" href="/workflow">Workflows</Text>
+                            </Group>
+                      </UnstyledButton>
+                  </>
+                  }
+
+                  {
+                        (user.info.roles.includes('ROLE_MANAGER') || user.info.roles.includes('ROLE_ADMIN') ) &&
+                        <>
+                          <UnstyledButton
+                              sx={(theme) => ({
+                                display: 'block',
+                                width: '100%',
+                                padding: theme.spacing.xs,
+                                borderRadius: theme.radius.sm,
+                                color: theme.colorScheme === 'dark' ? theme.colors.dark[0] : theme.black,
+
+                                '&:hover': {
+                                  backgroundColor:
+                                    theme.colorScheme === 'dark' ? theme.colors.dark[6] : theme.colors.gray[0],
+                                },
+                                '&.active': {
+                                  backgroundColor: 'rgb(37, 38, 43)',
+                                },
+                              })}
+                            >
+                              <Group>
+                                <ThemeIcon color="grey" variant="light">
+                                  <ThumbUp/>
+                                </ThemeIcon>
+                                <Text variant="link" component="a" href="/validation-conges">Validation des congés</Text>
+                              </Group>
+                            </UnstyledButton>
+                        </>
+                  }
                 <UnstyledButton
                   sx={(theme) => ({
                     display: 'block',
@@ -247,7 +294,6 @@ const AdminLayout = props => {
           {props.children}
       </AppShell>
         </>
-        
       );
 
 }

@@ -48,7 +48,7 @@ export const ProfilePage = memo((props: Props) => {
           <p>jours</p>
 
           <a href="/prendre-un-off"><Button variant="gradient" gradient={{ from: 'indigo', to: 'cyan' }}>
-            Prendre un off
+            Prendre un congés
           </Button></a>
       <Space h="md" />
 
