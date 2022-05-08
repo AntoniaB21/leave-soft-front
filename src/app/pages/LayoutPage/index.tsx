@@ -46,8 +46,6 @@ const AdminLayout = props => {
   const { user } = useSelector(selectGlobal);
   const theme = useMantineTheme();
   const [opened, setOpened] = useState(false);
-  console.log('user');
-  console.log(user);
   return (
         <>
         <AppShell
@@ -132,7 +130,7 @@ const AdminLayout = props => {
                               <ThemeIcon color="blue" variant="light">
                                 <Users/>
                               </ThemeIcon>
-                              <Text variant="link" component="a" href="/parametres">Users</Text>
+                              <Text variant="link" component="a" href="/users">Users</Text>
                             </Group>
                       </UnstyledButton>
 

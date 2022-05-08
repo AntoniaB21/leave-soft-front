@@ -24,7 +24,7 @@ import { ProfilePage } from "./pages/ProfilePage";
 import { OffRequestAdd } from "./pages/OffRequestAdd/Loadable";
 import { MyOffsList } from "./pages/MyOffsList";
 import { NotificationsPage } from "./pages/NotificationsPage";
-import { SettingsPage } from "./pages/SettingsPage";
+import { UsersListPage } from "./pages/UsersListPage";
 
 
 export function App() {
@@ -59,7 +59,7 @@ export function App() {
         <ProtectedRoute exact path="/prendre-un-off/" component={OffRequestAdd} />
         <ProtectedRoute exact path="/mes-offs/" component={MyOffsList} />
         <ProtectedRoute exact path="/mes-notifications/" component={NotificationsPage} />
-        <ProtectedRoute exact path="/parametres/" component={SettingsPage} />
+        <ProtectedRoute exact path="/users/" component={UsersListPage} />
         <Route component={NotFoundPage} />
       </Switch>
       <GlobalStyle />

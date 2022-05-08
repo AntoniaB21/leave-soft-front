@@ -26,6 +26,10 @@ const slice = createSlice({
       const userId = localStorage.getItem('xyz');
       if (typeof token === 'string') {
         const user = jwtDecode<myToken>(token);
+        if (new Date(user.exp * 1000) < new Date()) {
+          state.user = null;
+          state.loading = false;
+        }
         state.user = {
           username: user.username,
           info: user,

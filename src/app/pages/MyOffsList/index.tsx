@@ -13,8 +13,8 @@ import { selectGlobal } from 'app/slice/selectors';
 import { selectMyOffsList } from './slice/selectors';
 import { useMyOffsListSlice } from './slice';
 import { selectProfilePage } from '../ProfilePage/slice/selectors';
-import { Badge, Button, createStyles, Modal, Table, Title } from '@mantine/core';
-import { Ballpen, Eye, Pencil, X } from 'tabler-icons-react';
+import { ActionIcon, Badge, Button, createStyles, Group, Modal, Table, Title } from '@mantine/core';
+import { Ballpen, Eye, Pencil, Trash, X } from 'tabler-icons-react';
 import { Popup } from 'app/components/Common/Popup';
 
 interface Props extends RouteComponentProps<any> {}
@@ -93,7 +93,7 @@ export const MyOffsList = memo((props: Props) => {
   return (
     <Div>
       <Title order={3}>Mes demandes de congés</Title>
-      <Table>
+      <Table verticalSpacing="sm">
         <thead>
           <tr>
             <th>Dates</th>
@@ -108,7 +108,7 @@ export const MyOffsList = memo((props: Props) => {
           <td>Du {new Date(item['dateStart']).toLocaleDateString()} au {new Date(item['dateEnd']).toLocaleDateString()}</td>
             <td><Badge color={badgeColor(item['status'])}>{item['status']}</Badge></td>
             <td>
-            <Eye size={20} onClick={() => setOpened(true)} className={classes.button}></Eye>
+            <ActionIcon color="gray"><Eye size={20} onClick={() => setOpened(true)}></Eye></ActionIcon>
             <Popup
               opened={opened}
               handleClose={() => setOpened(false)}
@@ -126,8 +126,10 @@ export const MyOffsList = memo((props: Props) => {
             </Popup>
             { item['status'] === 'draft' && 
                   <>
-                    <X size={20} className={classes.button} onClick={() => setOpened(true)}></X>
-                    <Pencil size={20} className={classes.button}></Pencil>
+                  <Group>
+                    <ActionIcon color="grey"><Pencil size={16}></Pencil></ActionIcon>
+                    <ActionIcon color="red"><Trash size={16} onClick={() => setOpened(true)}></Trash></ActionIcon>
+                  </Group>
                   </>
             }
           </td>

@@ -6,6 +6,7 @@ import { ProfilePageState } from 'app/pages/ProfilePage/slice/types';
 import { OffRequestAddState } from 'app/pages/OffRequestAdd/slice/types';
 import { MyOffsListState } from 'app/pages/MyOffsList/slice/types';
 import { NotificationsPageState } from 'app/pages/NotificationsPage/slice/types';
+import { UsersListPageState } from 'app/pages/UsersListPage/slice/types';
 // [IMPORT NEW CONTAINERSTATE ABOVE] < Needed for generating containers seamlessly
 
 /*
@@ -20,5 +21,6 @@ export interface RootState {
   offRequestAdd?: OffRequestAddState;
   myOffsList?: MyOffsListState;
   notificationsPage?: NotificationsPageState;
+  usersListPage?: UsersListPageState;
   // [INSERT NEW REDUCER KEY ABOVE] < Needed for generating containers seamlessly
 }
