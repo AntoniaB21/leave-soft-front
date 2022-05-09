@@ -21,7 +21,7 @@ const useStyles = createStyles((theme, _params, getRef) => {
   return {
     container:{
       backgroundColor: theme.colors.pink[0],
-    }
+    },
   };
 });
 
@@ -54,7 +54,7 @@ export const ProfilePage = memo((props: Props) => {
 
       <Accordion disableIconRotation>
       <Accordion.Item
-        label="Statistiques"
+        label="Mon solde"
         icon={
           <ThemeIcon color="blue" variant="light">
             <Palette size={14} />
@@ -67,7 +67,7 @@ export const ProfilePage = memo((props: Props) => {
       </Accordion.Item>
 
       <Accordion.Item
-        label="Informations personnelles"
+        label="Mes Informations"
         icon={
           <ThemeIcon color="blue" variant="light">
             <Flame size={14} />
@@ -78,22 +78,7 @@ export const ProfilePage = memo((props: Props) => {
       <p>Contrat: <Badge>{data.tagItems[0]["name"]}</Badge></p>
       <p>Depuis : {data.dateEntrance}</p>
       </Accordion.Item>
-      <Accordion.Item
-        label="Votre dernière demande de congés"
-        icon={
-          <ThemeIcon color="blue" variant="light">
-            <Flame size={14} />
-          </ThemeIcon>
-        }
-      >
-        Pour visualiser vos demandes de congés
-        <a href="/mes-demandes"><Button variant="gradient" gradient={{ from: 'indigo', to: 'cyan' }}>
-            Mes demandes
-          </Button></a>
-      </Accordion.Item>
-      
     </Accordion>
-
     </Div>
     
   );

@@ -241,30 +241,6 @@ const AdminLayout = props => {
                             </UnstyledButton>
                         </>
                   }
-                <UnstyledButton
-                  sx={(theme) => ({
-                    display: 'block',
-                    width: '100%',
-                    padding: theme.spacing.xs,
-                    borderRadius: theme.radius.sm,
-                    color: theme.colorScheme === 'dark' ? theme.colors.dark[0] : theme.black,
-
-                    '&:hover': {
-                      backgroundColor:
-                        theme.colorScheme === 'dark' ? theme.colors.dark[6] : theme.colors.gray[0],
-                    },
-                    '&.active': {
-                      backgroundColor: 'rgb(37, 38, 43)',
-                    },
-                  })}
-                >
-                  <Group>
-                    <ThemeIcon color="grey" variant="light">
-                      <Notification/>
-                    </ThemeIcon>
-                    <Text variant="link" component="a" href="/mes-notifications">Notifications</Text>
-                  </Group>
-                </UnstyledButton>
               </Navbar.Section>
               <Navbar.Section>
                   <User onLogout={props.onLogout} username={props.username} />

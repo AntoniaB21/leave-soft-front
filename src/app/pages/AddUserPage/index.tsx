@@ -3,7 +3,8 @@
  * AddUserPage
  *
  */
-import { Select, Space, TextInput, Title } from '@mantine/core';
+import { PasswordInput, Select, Space, TextInput, Title } from '@mantine/core';
+import { DatePicker } from '@mantine/dates';
 import { useForm } from '@mantine/hooks';
 import { SaveButton } from 'app/components/Common/SaveButton';
 import React, { memo, useEffect, useState } from 'react';
@@ -28,6 +29,7 @@ const dispatch = useDispatch();
       password: '',
       team: [],
       contrat:``,
+      dateEntrance:``
     },
   });
 
@@ -45,10 +47,7 @@ const dispatch = useDispatch();
     console.log(values);
     dispatch(actions.addUserRequest(values));
   };
-  
-  console.log(teams);
-  console.log('tagChildren');
-  console.log(tagChildren);
+
   return <Div>
       <Title order={2}>Ajouter un utilisateur</Title>
       <form onSubmit={form.onSubmit(handleSubmit)}>
@@ -60,7 +59,7 @@ const dispatch = useDispatch();
         />
       <Space h="md" />
 
-      <TextInput
+      <PasswordInput
           required
           label="Password"
           placeholder="A safe default password"
@@ -80,6 +79,14 @@ const dispatch = useDispatch();
           placeholder="Pick one"
           data={tagChildren.map(tagChild => tagChild['description'])}
           {...form.getInputProps('contrat')}
+      />
+      <Space h="md" />
+      <DatePicker 
+          allowFreeInput
+          placeholder="Pick date"
+          label="Date d'entrée"
+          required
+          {...form.getInputProps('dateEntrance')}
       />
       <Space h="md" />
       <SaveButton color="blue" content="Ajouter un utilisateur" />
