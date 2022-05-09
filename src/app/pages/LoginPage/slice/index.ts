@@ -16,11 +16,11 @@ const slice = createSlice({
       state.loading = true;
     },
     signInSuccess(state, action: PayloadAction<any>) {
-      console.log('loggin successfull')
+      console.log('loggin successfully');
       state.loading = false;
     },
     signInFailed(state, action: PayloadAction<any>) {
-      console.log('loggin failed')
+      console.log('loggin failed');
       state.loading = false;
     },
   },

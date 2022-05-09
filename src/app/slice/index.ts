@@ -10,6 +10,12 @@ export const initialState: GlobalState = {
   loading: true,
 };
 
+interface myToken{
+  token: string,
+  exp:number,
+  username:string,
+}
+
 const slice = createSlice({
   name: 'global',
   initialState,
@@ -17,11 +23,17 @@ const slice = createSlice({
     getCurrentUser(state) {
       const token = localStorage.getItem('tk');
       const username = localStorage.getItem('username');
+      const userId = localStorage.getItem('xyz');
       if (typeof token === 'string') {
-        const user = jwtDecode(token);
+        const user = jwtDecode<myToken>(token);
+        if (new Date(user.exp * 1000) < new Date()) {
+          state.user = null;
+          state.loading = false;
+        }
         state.user = {
-          username: username,
+          username: user.username,
           info: user,
+          xyz: userId,
         };
         state.loading = false;
       } else {
@@ -43,3 +55,15 @@ export const useGlobalSlice = () => {
   useInjectSaga({ key: slice.name, saga: globalSaga });
   return { actions: slice.actions };
 };
+
+/**
+ * Example Usage:
+ *
+ * export function MyComponentNeedingThisSlice() {
+ *  const { actions } = useGlobalSlice();
+ *
+ *  const onButtonClick = (evt) => {
+ *    dispatch(actions.someAction());
+ *   };
+ * }
+ */
