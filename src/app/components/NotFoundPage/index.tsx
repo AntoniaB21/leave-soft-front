@@ -7,7 +7,7 @@ export function NotFoundPage() {
   return (
     <>
       <Helmet>
-        <title>404 Page Not Found</title>
+        <title>Page coming soon</title>
         <meta name="description" content="Page not found" />
       </Helmet>
       <Wrapper>
@@ -18,7 +18,7 @@ export function NotFoundPage() {
           </span>
           4
         </Title>
-        <P>Page not found.</P>
+        <P>Page coming soon</P>
       </Wrapper>
     </>
   );

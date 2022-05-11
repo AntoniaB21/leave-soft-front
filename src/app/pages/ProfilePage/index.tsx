@@ -11,9 +11,10 @@ import { RouteComponentProps } from 'react-router';
 import { useProfilePageSlice } from './slice';
 import { useDispatch, useSelector } from 'react-redux';
 import { selectProfilePage } from './slice/selectors';
-import { Badge, Button, createStyles, Grid,Title } from '@mantine/core';
-import { Palette, Flame } from 'tabler-icons-react';
+import { Badge, Button, Center, createStyles, Grid,Title } from '@mantine/core';
+import { Palette, Flame, SpacingHorizontal } from 'tabler-icons-react';
 import { ThemeIcon, Accordion, Space, Container} from '@mantine/core';
+import { CtaButtonSave } from 'app/components/Common/CtaButtonSave';
 
 interface Props extends RouteComponentProps<any> {}
 
@@ -41,15 +42,8 @@ export const ProfilePage = memo((props: Props) => {
 
   return (
     <Div>
-        <p>Bonjour</p>
-          <Title order={5}>{data.firstName} {data.lastName}</Title>
-          <p>Ce mois-ci il vous reste </p>
-          <Title order={2}>{data.daysLeft}</Title>
-          <p>jours</p>
-
-          <a href="/prendre-un-off"><Button variant="gradient" gradient={{ from: 'indigo', to: 'cyan' }}>
-            Prendre un congés
-          </Button></a>
+          <Title order={5}>Bonjour {data.firstName}</Title>
+  
       <Space h="md" />
 
       <Accordion disableIconRotation>
@@ -79,6 +73,10 @@ export const ProfilePage = memo((props: Props) => {
       <p>Depuis : {data.dateEntrance}</p>
       </Accordion.Item>
     </Accordion>
+    <Space h="md"/>
+    <Center>
+    <CtaButtonSave content="Prendre un congé" target="/prendre-un-off" />
+    </Center>
     </Div>
     
   );
