@@ -7,7 +7,7 @@ import React, { memo } from 'react';
 import styled from 'styled-components/macro';
 import { useTranslation } from 'react-i18next';
 import { messages } from './messages';
-import { Alert, Button, Textarea, TextInput, Title } from '@mantine/core';
+import { Alert, Button, Select, Textarea, TextInput, Title } from '@mantine/core';
 import { DatePicker } from '@mantine/dates';
 import { useForm } from '@mantine/hooks';
 import { Link, RouteComponentProps } from 'react-router-dom';
@@ -31,6 +31,7 @@ export const OffRequestAdd = memo((props: Props) => {
       dateEnd: '',
       comments: '',
       user:``,
+      typesConges:``
     },
   });
 
@@ -48,8 +49,18 @@ export const OffRequestAdd = memo((props: Props) => {
             {message}
           </Alert>
       }
-      <Title order={2}>Prendre un congés</Title>
+      <Title order={2}>Prendre un congé</Title>
       <form onSubmit={form.onSubmit(handleSubmit)}>
+      <Select
+          label="Type de congés"
+          placeholder="Pick one"
+          data={[
+            {value:'CDD', label:'CDD'},
+            {value:'CDI', label:'CDI'},
+          ]}
+          // data={typesConges.map(typeConge => type['description'])}
+          // {...form.getInputProps('typeConge')}
+      />
       <DatePicker 
           allowFreeInput
           placeholder="Pick date"

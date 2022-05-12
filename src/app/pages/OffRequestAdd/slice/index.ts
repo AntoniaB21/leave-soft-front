@@ -8,7 +8,7 @@ export const initialState: OffRequestAddState = {
   loading: false,
   data: [],
   message: '',
-  messageColor: ''
+  messageColor: '',
 };
 
 const slice = createSlice({
