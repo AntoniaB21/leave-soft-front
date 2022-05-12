@@ -24,6 +24,7 @@ export interface ProfilePageState {
         ],
         daysEarned:number,
         daysTaken:number,
-        daysLeft:number
+        daysLeft:number,
+        jobTitle:string
     }
 }

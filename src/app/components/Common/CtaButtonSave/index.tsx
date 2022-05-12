@@ -17,7 +17,7 @@ export const CtaButtonSave = memo((props: Props) => {
   return (
   <Div>
       <a href={props.target}>
-        <Button variant="outline" color={'#1F66A8'} radius="xl">
+        <Button color={'#1F66A8'} radius="xl">
           {props.content}
         </Button>
     </a>

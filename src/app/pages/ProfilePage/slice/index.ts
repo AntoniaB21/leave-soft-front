@@ -17,7 +17,8 @@ export const initialState: ProfilePageState = {
     tagItems: [{}],
     daysEarned: 0,
     daysTaken: 0,
-    daysLeft: 0
+    daysLeft: 0,
+    jobTitle:'Responsable RH'
   }
 };
 
