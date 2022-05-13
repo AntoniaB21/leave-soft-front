@@ -45,6 +45,7 @@ export const ProfilePage = memo((props: Props) => {
   useEffectOnMount(() => {
     dispatch(actions.loadUserInfoRequest({ id: props.match.params.id }));
   });
+  
   return (
     <Div>
       <Title order={5}>Bonjour {data.firstName}</Title>

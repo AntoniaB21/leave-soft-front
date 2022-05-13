@@ -154,7 +154,7 @@ const AdminLayout = props => {
                               <ThemeIcon color="red" variant="light">
                                 <Users/>
                               </ThemeIcon>
-                              <Text variant="link" component="a" href="/parametres">Teams</Text>
+                              <Text variant="link" component="a" href="/teams">Teams</Text>
                             </Group>
                       </UnstyledButton>
 
@@ -180,7 +180,7 @@ const AdminLayout = props => {
                               <ThemeIcon color="yellow" variant="light">
                                 <Notes/>
                               </ThemeIcon>
-                              <Text variant="link" component="a" href="/workflow">Tags</Text>
+                              <Text variant="link" component="a" href="/tags">Tags</Text>
                             </Group>
                       </UnstyledButton>
 
@@ -206,7 +206,7 @@ const AdminLayout = props => {
                               <ThemeIcon color="blue" variant="light">
                                 <UserExclamation/>
                               </ThemeIcon>
-                              <Text variant="link" component="a" href="/workflow">Workflows</Text>
+                              <Text variant="link" component="a" href="/workflows">Workflows</Text>
                             </Group>
                       </UnstyledButton>
                   </>

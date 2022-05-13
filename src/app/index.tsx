@@ -25,6 +25,7 @@ import { OffRequestAdd } from "./pages/OffRequestAdd/Loadable";
 import { MyOffsList } from "./pages/MyOffsList";
 import { UsersListPage } from "./pages/UsersListPage";
 import { AddUserPage } from "./pages/AddUserPage";
+import { TagsListPage } from "./pages/TagsListPage";
 
 
 export function App() {
@@ -54,12 +55,12 @@ export function App() {
       <Switch>
         <Route exact path="/" component={HomePage} />
         <Route exact path="/login" component={LoginPage} />
-        <ProtectedRoute exact path="/tags" component={HomePage} />
         <ProtectedRoute exact path="/profile/:id" component={ProfilePage} />
         <ProtectedRoute exact path="/prendre-un-off/" component={OffRequestAdd} />
         <ProtectedRoute exact path="/mes-offs/" component={MyOffsList} />
         <ProtectedRoute exact path="/users/" component={UsersListPage} />
         <ProtectedRoute exact path="/add-user/" component={AddUserPage} />
+        <ProtectedRoute exact path="/tags" component={TagsListPage} />
         <Route component={NotFoundPage} />
       </Switch>
       <GlobalStyle />
