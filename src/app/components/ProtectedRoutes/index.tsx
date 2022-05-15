@@ -19,8 +19,10 @@ const ProtectedRoute = props => {
   const handleLogout = () => {
     dispatch(actions.logoutCurrentUser())
   }
+  console.log('user');
+  // console.log(user.username);
   return (
-     <Route
+    <Route
        {...rest}
        render={routeProps =>
          loading
