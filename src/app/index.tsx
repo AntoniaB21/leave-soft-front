@@ -29,6 +29,7 @@ import { TagsListPage } from "./pages/TagsListPage";
 import { AddTagPage } from "./pages/AddTagPage";
 import { ValidationListPage } from "./pages/ValidationListPage";
 import { AddTagChildPage } from "./pages/AddTagChildPage";
+import { UpdateTagPage } from "./pages/UpdateTagPage";
 
 
 export function App() {
@@ -67,6 +68,7 @@ export function App() {
         <ProtectedRoute exact path="/add-tag" component={AddTagPage} />
         <ProtectedRoute exact path="/validation-conges" component={ValidationListPage} />
         <ProtectedRoute exact path="/api/tags/:id/addItem" component={AddTagChildPage} />
+        <ProtectedRoute exact path="/tags/:slug/edit" component={UpdateTagPage}/>
         <Route component={NotFoundPage} />
       </Switch>
       <GlobalStyle />
