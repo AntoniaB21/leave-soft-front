@@ -6,7 +6,9 @@ import { ValidationListState } from './types';
 
 export const initialState: ValidationListState = {
   loading: false,
-  data: []
+  data: [],
+  message: '',
+  messageColor: ''
 };
 
 const slice = createSlice({
@@ -21,6 +23,34 @@ const slice = createSlice({
       state.loading = false;
     },
     getValidationListFailure(state, action: PayloadAction<any>) {
+      state.loading = false;
+    },
+    acceptOffRequest(state, action: PayloadAction<any>) {
+      state.message = '';
+      state.messageColor = '';
+      state.loading = true;
+    },
+    acceptOffRequestSuccess(state, action: PayloadAction<any>) {
+      state.message = action.payload.message;
+      state.messageColor = action.payload.messageColor;
+      state.loading = false;
+    },
+    acceptOffRequestFailure(state, action: PayloadAction<any>) {
+      state.message = action.payload.message;
+      state.messageColor = action.payload.messageColor;
+      state.loading = false;
+    },
+    declineOffRequest(state, action: PayloadAction<any>) {
+      state.loading = true;
+    },
+    declineOffRequestSuccess(state, action: PayloadAction<any>) {
+      state.message = action.payload.message;
+      state.messageColor = action.payload.messageColor;
+      state.loading = false;
+    },
+    declineOffRequestFailure(state, action: PayloadAction<any>) {
+      state.message = action.payload.message;
+      state.messageColor = action.payload.messageColor;
       state.loading = false;
     },
   },
