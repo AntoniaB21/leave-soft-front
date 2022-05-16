@@ -7,7 +7,8 @@ import { AddTagChildState } from './types';
 export const initialState: AddTagChildState = {
   loading: false,
   message: '',
-  messageColor: ''
+  messageColor: '',
+  data: []
 };
 
 const slice = createSlice({
@@ -15,6 +16,7 @@ const slice = createSlice({
   initialState,
   reducers: {
     addTagChildRequest(state, action: PayloadAction<any>) {
+      state.data = action.payload;
       state.loading=true;
     },
     addTagChildSuccess(state, action: PayloadAction<any>) {
@@ -31,6 +33,7 @@ const slice = createSlice({
       state.loading=true;
     },
     loadTagListSuccess(state, action: PayloadAction<any>) {
+      state.data = action.payload;
       state.loading=false;
     },
     loadTagListFailure(state, action: PayloadAction<any>) {
