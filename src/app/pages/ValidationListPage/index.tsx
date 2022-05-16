@@ -24,7 +24,7 @@ export const ValidationListPage = memo((props: Props) => {
   const { user } = useSelector(selectGlobal);
   
   const useEffectOnMount = (effect: React.EffectCallback) => {
-    useEffect(effect, ["hot"]);
+    useEffect(effect, []);
   };
 
   useEffectOnMount(() => {
@@ -32,7 +32,7 @@ export const ValidationListPage = memo((props: Props) => {
   });
 
   const AcceptAction = (itemId) => {
-    console.log(itemId);
+    console.log('accept');
     dispatch(actions.acceptOffRequest({itemId}));
   };
 

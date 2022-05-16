@@ -5,8 +5,8 @@ import slugify from 'slugify';
 
 function* addTag(action){
   try {
-  yield delay(100);
-    yield call(api.post,'api/tags',{
+    console.log(action);
+    yield call(api.post,'/api/tags',{
       name:action.payload.name,
       slug:slugify(action.payload.name),
     },{
