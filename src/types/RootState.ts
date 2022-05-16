@@ -7,6 +7,8 @@ import { MyOffsListState } from 'app/pages/MyOffsList/slice/types';
 import { UsersListPageState } from 'app/pages/UsersListPage/slice/types';
 import { AddUserPageState } from 'app/pages/AddUserPage/slice/types';
 import { TagsListPageState } from 'app/pages/TagsListPage/slice/types';
+import { AddTagState } from 'app/pages/AddTagPage/slice/types';
+import { ValidationListState } from 'app/pages/ValidationListPage/slice/types';
 // [IMPORT NEW CONTAINERSTATE ABOVE] < Needed for generating containers seamlessly
 
 /*
@@ -22,5 +24,7 @@ export interface RootState {
   usersListPage?: UsersListPageState;
   addUserPage?: AddUserPageState;
   tagsListPage?: TagsListPageState;
+  addTag?: AddTagState;
+  validationList?: ValidationListState;
   // [INSERT NEW REDUCER KEY ABOVE] < Needed for generating containers seamlessly
 }

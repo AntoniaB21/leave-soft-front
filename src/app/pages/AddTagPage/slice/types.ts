@@ -1,8 +1,7 @@
 /* --- STATE --- */
-export interface OffRequestAddState {
+export interface AddTagState {
     loading:boolean,
-    data:[],
     message:string,
-    congesType:[],
     messageColor:string,
+    data:[]
 }

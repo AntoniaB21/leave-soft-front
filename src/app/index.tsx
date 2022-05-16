@@ -26,6 +26,8 @@ import { MyOffsList } from "./pages/MyOffsList";
 import { UsersListPage } from "./pages/UsersListPage";
 import { AddUserPage } from "./pages/AddUserPage";
 import { TagsListPage } from "./pages/TagsListPage";
+import { AddTagPage } from "./pages/AddTagPage";
+import { ValidationListPage } from "./pages/ValidationListPage";
 
 
 export function App() {
@@ -61,6 +63,8 @@ export function App() {
         <ProtectedRoute exact path="/users/" component={UsersListPage} />
         <ProtectedRoute exact path="/add-user/" component={AddUserPage} />
         <ProtectedRoute exact path="/tags" component={TagsListPage} />
+        <ProtectedRoute exact path="/add-tag" component={AddTagPage} />
+        <ProtectedRoute exact path="/validation-conges" component={ValidationListPage} />
         <Route component={NotFoundPage} />
       </Switch>
       <GlobalStyle />

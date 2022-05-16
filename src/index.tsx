@@ -25,6 +25,8 @@ import { configureAppStore } from "store/configureStore";
 
 import reportWebVitals from "reportWebVitals";
 
+import { hot } from 'react-hot-loader/root';
+
 // Initialize languages
 import "./locales/i18n";
 

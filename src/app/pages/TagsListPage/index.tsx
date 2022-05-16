@@ -7,7 +7,7 @@ import { ActionIcon, createStyles, Group, Table, Title } from '@mantine/core';
 import { Popup } from 'app/components/Common/Popup';
 import React, { memo, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { RouteComponentProps } from 'react-router-dom';
+import { Link, RouteComponentProps } from 'react-router-dom';
 import styled from 'styled-components/macro';
 import { Badge, Pencil, PlaylistAdd, Trash } from 'tabler-icons-react';
 import { useTagsListPageSlice } from './slice';
@@ -38,13 +38,11 @@ export const TagsListPage = memo((props: Props) => {
   useEffectOnMount(() => {
     dispatch(actions.loadTagsListRequest({}));
   });
-
   console.log(data);
-
-  return     <Div>
+  return <Div>
   <Title order={3}>Tags</Title>
   <Group spacing={0} position="right">
-    <ActionIcon color="green" variant="light"><PlaylistAdd/></ActionIcon>
+  <Link to='add-tag'><ActionIcon color="green" variant="light"><PlaylistAdd/></ActionIcon></Link>
   </Group>
   <Table verticalSpacing="sm">
     <thead>

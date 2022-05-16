@@ -9,6 +9,7 @@ export const initialState: OffRequestAddState = {
   data: [],
   message: '',
   messageColor: '',
+  congesType: []
 };
 
 const slice = createSlice({
@@ -28,6 +29,16 @@ const slice = createSlice({
       state.message= action.payload.message;
       state.messageColor = action.payload.messageColor;
       state.loading=false;
+    },
+    loadTagChildrenCongeTypesRequest(state, action: PayloadAction<any>) {
+      state.loading=true;
+    },
+    loadTagChildrenSuccess(state, action: PayloadAction<any>) {
+      state.congesType = action.payload;
+      state.loading = false;
+    },
+    loadTagChildrenFailure(state, action: PayloadAction<any>) {
+      state.loading = false;
     },
   },
 });

@@ -16,10 +16,12 @@ import { selectProfilePage } from '../ProfilePage/slice/selectors';
 import { ActionIcon, Badge, Button, createStyles, Group, Modal, Table, Title } from '@mantine/core';
 import { Ballpen, Eye, Pencil, PlaylistAdd, Trash, X } from 'tabler-icons-react';
 import { Popup } from 'app/components/Common/Popup';
+import { useModals } from '@mantine/modals';
 
 interface Props extends RouteComponentProps<any> {}
 
 export const MyOffsList = memo((props: Props) => {
+  
   const useStyles = createStyles((theme, _params, getRef) => {
     return {
       pagination: {
@@ -41,12 +43,12 @@ export const MyOffsList = memo((props: Props) => {
       }
     };
   });
+
   const { actions } = useMyOffsListSlice();
   const dispatch = useDispatch();
   const { data, loading } = useSelector(selectMyOffsList);
   const { user } = useSelector(selectGlobal);
   const [opened, setOpened] = useState(false);
-
   const { classes } = useStyles();
 
   const useEffectOnMount = (effect: React.EffectCallback) => {
@@ -77,23 +79,6 @@ export const MyOffsList = memo((props: Props) => {
     }
   }
 
-  const viewOffRequestDetails = item => {
-    <Popup
-    opened={opened}
-    handleClose={() => setOpened(false)}
-    size={'90%'}
-    title={'PopUp ouvert'}
-    overflow={'inside'}
-    content={
-      <>
-        <p><span>Du:{new Date(item['dateStart']).toLocaleDateString()} au {new Date(item['dateEnd']).toLocaleDateString()}</span></p>
-        <p><span>Nombre de jours: {item['count']}</span></p>
-        <p><span>Commentaires: {item['comments']}</span></p>
-      </>
-    }
-  >
-  </Popup>
-  }
   return (
     <Div>
       <Title order={3}>Mes demandes de congés</Title>
@@ -124,30 +109,19 @@ export const MyOffsList = memo((props: Props) => {
               opened={opened}
               handleClose={() => setOpened(false)}
               size={'90%'}
-              title={'PopUp ouvert'}
+              title={'Détails de la demande'}
               overflow={'inside'}
               content={
                 <>
                   <p><span>Du: {new Date(item['dateStart']).toLocaleDateString()} au {new Date(item['dateEnd']).toLocaleDateString()}</span></p>
-                  <p><span>Nombre de jours: {item['count']}</span></p>
                   <p><span>Commentaires: {item['comments']}</span></p>
                 </>
               }
             >
             </Popup>
-            <Group spacing={0} position="left">
-                  { item['status'] === 'draft' && 
-                  <>
-                      <ActionIcon>
-                        <Pencil size={16} />
-                      </ActionIcon>
-                      <ActionIcon color="red">
-                        <Trash size={16} />
-                      </ActionIcon>
-                  </>
-                  }
-            {/* <ActionIcon color="gray"><Eye size={20} onClick={() => setOpened(true)}></Eye></ActionIcon> */}
-            </Group>
+            <ActionIcon color="red">
+                <Eye size={20} onClick={() => setOpened(true)}></Eye>
+            </ActionIcon>
           </td>
         </tr>
         </>
@@ -160,3 +134,4 @@ export const MyOffsList = memo((props: Props) => {
 });
 
 const Div = styled.div``;
+

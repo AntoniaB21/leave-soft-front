@@ -3,7 +3,7 @@
  * OffRequestAdd
  *
  */
-import React, { memo } from 'react';
+import React, { memo, useEffect } from 'react';
 import styled from 'styled-components/macro';
 import { useTranslation } from 'react-i18next';
 import { messages } from './messages';
@@ -22,7 +22,7 @@ interface Props extends RouteComponentProps<any> {}
 export const OffRequestAdd = memo((props: Props) => {
   const { actions } = useOffRequestAddSlice();
   const dispatch = useDispatch();
-   const { loading, message, messageColor } = useSelector(selectOffRequestAdd);
+   const { loading, message, messageColor, congesType} = useSelector(selectOffRequestAdd);
    const { user } = useSelector(selectGlobal); // get the user in global state
 
   const form = useForm({
@@ -34,13 +34,19 @@ export const OffRequestAdd = memo((props: Props) => {
       typesConges:``
     },
   });
+  
+  const useEffectOnMount = (effect: React.EffectCallback) => {
+    useEffect(effect, []);
+  };
+  
+  useEffectOnMount(() => {
+    dispatch(actions.loadTagChildrenCongeTypesRequest({}));
+  });
 
   const handleSubmit = async (values: typeof form['values']) => {
     console.log('values');
-    console.log(values);
     dispatch(actions.addOffRequestInProgress(values));
   };
-  console.log({message});
   return (
     <Div>
       {
@@ -49,18 +55,8 @@ export const OffRequestAdd = memo((props: Props) => {
             {message}
           </Alert>
       }
-      <Title order={2}>Prendre un congé</Title>
+      <Title order={2}>Prendre un congé payé</Title>
       <form onSubmit={form.onSubmit(handleSubmit)}>
-      <Select
-          label="Type de congés"
-          placeholder="Pick one"
-          data={[
-            {value:'CDD', label:'CDD'},
-            {value:'CDI', label:'CDI'},
-          ]}
-          // data={typesConges.map(typeConge => type['description'])}
-          // {...form.getInputProps('typeConge')}
-      />
       <DatePicker 
           allowFreeInput
           placeholder="Pick date"
@@ -89,10 +85,11 @@ export const OffRequestAdd = memo((props: Props) => {
              >
               Sauvegarder
       </Button>
-      <a href={`/profile/${user.xyz}`}>Retour à l'accueil</a>
+      <a href={`/mes-offs`}>Retour </a>
       </form>
     </Div>
   );
 });
 
 const Div = styled.div``;
+

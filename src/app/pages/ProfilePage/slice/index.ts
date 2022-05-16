@@ -18,7 +18,7 @@ export const initialState: ProfilePageState = {
     daysEarned: 0,
     daysTaken: 0,
     daysLeft: 0,
-    jobTitle:'Responsable RH'
+    jobTitle:''
   }
 };
 

@@ -54,7 +54,6 @@ export const ProfilePage = memo((props: Props) => {
         <div>
         <span className={classes.subtitle}>{data.firstName} {data.lastName}</span>
           <p>{data.jobTitle}</p>
-          <p>Responsable RH</p>
         </div>
       </Group>
       <span className={classes.subtitle}>Jours restants : </span><span>{data.daysLeft}</span>

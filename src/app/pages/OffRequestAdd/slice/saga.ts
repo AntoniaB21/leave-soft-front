@@ -10,7 +10,8 @@ const postRequest = (payload) => {
       dateStart: new Date(payload.dateStart).toISOString().slice(0,10),
       dateEnd: new Date(payload.dateEnd).toISOString().slice(0,10),
       comments:payload.comments,
-      user:`/api/users/${user}`
+      user:`/api/users/${user}`,
+      // offRequestType:`${payload.typesConges}`
   },{
     headers:{
       'Content-Type': 'application/json',
@@ -47,6 +48,24 @@ function* postOffRequestFlow(action) {
   }
 }
 
+
+function* getCongesTypes(){
+  try {
+    const congesTypes = yield call(api.get,'api/tags/2/tag_childrens',{
+      headers:{
+        'Content-Type':'application/json'
+      }});
+    yield put(actions.loadTagChildrenSuccess(congesTypes.data["hydra:member"]));
+  } catch (error) {
+    yield put(actions.loadTagChildrenFailure({
+      message:'Failed to load conges types'
+    }));
+    
+  }
+  
+}
+
 export function* offRequestAddSaga() {
   yield takeLatest(actions.addOffRequestInProgress.type, postOffRequestFlow);
+  yield takeLatest(actions.loadTagChildrenCongeTypesRequest.type, getCongesTypes);
 }
