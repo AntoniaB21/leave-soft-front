@@ -12,6 +12,7 @@ import styled from 'styled-components/macro';
 import { Badge, Pencil, PlaylistAdd, Trash } from 'tabler-icons-react';
 import { useTagsListPageSlice } from './slice';
 import { selectTagsListPage } from './slice/selectors';
+import { useHistory } from 'react-router-dom';
 
 
 interface Props extends RouteComponentProps<any> {}
@@ -25,6 +26,7 @@ const useStyles = createStyles((theme, _params, getRef) => {
   };
 });
 export const TagsListPage = memo((props: Props) => {
+  const history = useHistory();
   const { classes } = useStyles();
   const { actions } = useTagsListPageSlice();
   const dispatch = useDispatch();
@@ -38,6 +40,11 @@ export const TagsListPage = memo((props: Props) => {
   useEffectOnMount(() => {
     dispatch(actions.loadTagsListRequest({}));
   });
+
+  // const AddTagItem = (tagId) => {
+  //   dispatch(actions.acceptOffRequest({tagId}));
+  // };
+
   console.log(data);
   return <Div>
   <Title order={3}>Tags</Title>
@@ -63,7 +70,7 @@ export const TagsListPage = memo((props: Props) => {
         <Group spacing={0} position="right">
           <>
               <ActionIcon>
-                <PlaylistAdd size={16} />
+                <PlaylistAdd size={16} onClick={()=> history.push(`${(item['@id'])}/addItem`)}/>
               </ActionIcon>
               <ActionIcon>
                 <Pencil size={16} />

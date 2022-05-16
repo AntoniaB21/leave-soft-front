@@ -23,6 +23,7 @@ const slice = createSlice({
     loadTagsListFailure(state, action: PayloadAction<any>) {
       state.loading=false;
     },
+    
   },
 });
 
