@@ -13,7 +13,7 @@ import { Badge, Pencil, PlaylistAdd, Trash } from 'tabler-icons-react';
 import { useTagsListPageSlice } from './slice';
 import { selectTagsListPage } from './slice/selectors';
 import { useHistory } from 'react-router-dom';
-
+import { useModals } from '@mantine/modals';
 
 interface Props extends RouteComponentProps<any> {}
 
@@ -25,6 +25,8 @@ const useStyles = createStyles((theme, _params, getRef) => {
     }
   };
 });
+
+
 export const TagsListPage = memo((props: Props) => {
   const history = useHistory();
   const { classes } = useStyles();
@@ -36,17 +38,37 @@ export const TagsListPage = memo((props: Props) => {
   const useEffectOnMount = (effect: React.EffectCallback) => {
     useEffect(effect, []);
   };
-
+  
   useEffectOnMount(() => {
     dispatch(actions.loadTagsListRequest({}));
   });
+  
 
+  const deleteTagAction = (itemId) => {
+    dispatch(actions.deleteTagAction({itemId}));
+  };
+  
+  const modals = useModals();
 
+  const openConfirmModal = (itemId: never) => modals.openConfirmModal({
+    title: 'Supprimer un tag',
+    children: (
+      <p>
+        Supprimer un tag entraînera la suppression de ses tags enfants. Cette action est irreversible.
+        Voulez-vous vraiment continuer ?
+      </p>
+    ),
+    labels: { confirm: 'Confirm', cancel: 'Cancel' },
+    onCancel: () => console.log('Cancel'),
+    onConfirm: () => deleteTagAction(itemId),
+  });
+  
   // const AddTagItem = (tagId) => {
   //   dispatch(actions.acceptOffRequest({tagId}));
   // };
 
   console.log(tags);
+
   return <Div>
   <Title order={3}>Tags</Title>
   <Group spacing={0} position="right">
@@ -77,7 +99,7 @@ export const TagsListPage = memo((props: Props) => {
                 <Pencil size={16} onClick={()=> history.push(`/tags/${(item['slug'])}/edit`)}/>
               </ActionIcon>
               <ActionIcon color="red">
-                <Trash size={16} />
+                <Trash size={16} onClick={() => openConfirmModal(item['@id'])}/>
               </ActionIcon>
           </>
         </Group>

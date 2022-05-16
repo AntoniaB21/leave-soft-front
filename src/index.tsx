@@ -29,6 +29,7 @@ import { hot } from 'react-hot-loader/root';
 
 // Initialize languages
 import "./locales/i18n";
+import { ModalsProvider } from "@mantine/modals";
 
 const store = configureAppStore();
 const MOUNT_NODE = document.getElementById("root") as HTMLElement;
@@ -37,9 +38,11 @@ ReactDOM.render(
   <Provider store={store}>
     <HelmetProvider>
       <React.StrictMode>
+      <ModalsProvider>
         <ChakraProvider>
             <App />
           </ChakraProvider>
+      </ModalsProvider>
       </React.StrictMode>
     </HelmetProvider>
   </Provider>,

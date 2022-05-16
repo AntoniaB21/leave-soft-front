@@ -23,7 +23,15 @@ const slice = createSlice({
     loadTagsListFailure(state, action: PayloadAction<any>) {
       state.loading=false;
     },
-    
+    deleteTagAction(state, action: PayloadAction<any>) {
+      state.loading=true;
+    },
+    deleteTagActionSuccess(state, action: PayloadAction<any>) {
+      state.loading=true;
+    },
+    deleteTagActionFailure(state, action: PayloadAction<any>) {
+      state.loading=true;
+    },
   },
 });
 
