@@ -10,6 +10,7 @@ import { TagsListPageState } from 'app/pages/TagsListPage/slice/types';
 import { AddTagState } from 'app/pages/AddTagPage/slice/types';
 import { ValidationListState } from 'app/pages/ValidationListPage/slice/types';
 import { AddTagChildState } from 'app/pages/AddTagChildPage/slice/types';
+import { UpdateTagState } from 'app/pages/UpdateTagPage/slice/types';
 // [IMPORT NEW CONTAINERSTATE ABOVE] < Needed for generating containers seamlessly
 
 /*
@@ -28,5 +29,6 @@ export interface RootState {
   addTag?: AddTagState;
   validationList?: ValidationListState;
   addTagChild?: AddTagChildState;
+  updateTag?: UpdateTagState;
   // [INSERT NEW REDUCER KEY ABOVE] < Needed for generating containers seamlessly
 }

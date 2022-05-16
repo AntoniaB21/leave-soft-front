@@ -40,9 +40,6 @@ export const UsersListPage = memo((props: Props) => {
   const { data, loading, message } = useSelector(selectUsersListPage);
   const { user } = useSelector(selectGlobal);
 
-  console.log('props in users list');
-  console.log(user);
-
   const useEffectOnMount = (effect: React.EffectCallback) => {
     useEffect(effect, []);
   };

@@ -6,7 +6,7 @@ import { TagsListPageState } from './types';
 
 export const initialState: TagsListPageState = {
   loading: false,
-  data: []
+  tags: []
 };
 
 const slice = createSlice({
@@ -17,7 +17,7 @@ const slice = createSlice({
       state.loading=true;
     },
     loadTagsListSuccess(state, action: PayloadAction<any>) {
-      state.data = action.payload;
+      state.tags = action.payload;
       state.loading=false;
     },
     loadTagsListFailure(state, action: PayloadAction<any>) {

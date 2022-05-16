@@ -30,7 +30,7 @@ export const TagsListPage = memo((props: Props) => {
   const { classes } = useStyles();
   const { actions } = useTagsListPageSlice();
   const dispatch = useDispatch();
-  const { data, loading } = useSelector(selectTagsListPage);
+  const { tags, loading } = useSelector(selectTagsListPage);
   const [popupOpened, setPopupOpened] = React.useState(false);
   
   const useEffectOnMount = (effect: React.EffectCallback) => {
@@ -41,11 +41,12 @@ export const TagsListPage = memo((props: Props) => {
     dispatch(actions.loadTagsListRequest({}));
   });
 
+
   // const AddTagItem = (tagId) => {
   //   dispatch(actions.acceptOffRequest({tagId}));
   // };
 
-  console.log(data);
+  console.log(tags);
   return <Div>
   <Title order={3}>Tags</Title>
   <Group spacing={0} position="right">
@@ -59,7 +60,7 @@ export const TagsListPage = memo((props: Props) => {
       </tr>
     </thead>
     <tbody>
-    {data.map(item =>
+    {tags.map(item =>
     <>
     <tr key={item['@id']}>
       <td>
@@ -70,10 +71,10 @@ export const TagsListPage = memo((props: Props) => {
         <Group spacing={0} position="right">
           <>
               <ActionIcon>
-                <PlaylistAdd size={16} onClick={()=> history.push(`${(item['@id'])}/addItem`)}/>
+                <PlaylistAdd size={16} onClick={()=> history.push(`${(item['slug'])}/addItem`)}/>
               </ActionIcon>
               <ActionIcon>
-                <Pencil size={16} />
+                <Pencil size={16} onClick={()=> history.push(`/tags/${(item['slug'])}/edit`)}/>
               </ActionIcon>
               <ActionIcon color="red">
                 <Trash size={16} />
